@@ -13,9 +13,7 @@ void LinkSelector::initialize()
 {
     malusExpire = new cMessage("malusExpire");
     monitoringExpire = new cMessage("monitoringExpire");
-
-    chosenDL = par("chosenDL");
-    nDL = par("nDL");
+    nDL = getAncestorPar("nDL");
     operationMode = par("operationMode"); //0 --> monitored
 
     if(operationMode == 0 && nDL > 0){
@@ -50,9 +48,11 @@ void LinkSelector::getIndexBestCapacity(){
    int capacity = -1;
 
     cModule* temp;
-    temp = getModuleByPath("DataLink");
-
-
+//    temp = getModuleByPath("DataLink");
+//    this will be in a for loop and we need to use strconcat
+    cGate *outgate = gate("LS_out[]");
+//    hopefully this will return the DL to which the AC_out is connected
+    outgate->getPathEndGate()->getOwner();
 //    DataLink* dl;
 //    dl = check_and_cast<DataLink*>(temp);
 //
