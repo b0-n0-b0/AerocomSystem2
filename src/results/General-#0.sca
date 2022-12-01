@@ -1,0 +1,89 @@
+version 3
+run General-0-20221129-00:32:55-11099
+attr configname General
+attr datetime 20221129-00:32:55
+attr datetimef 20221129-003255
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 11099
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config network AerocomSys
+
+par AerocomSys.controlTower typename "\"ControlTower\""
+statistic AerocomSys.controlTower responseTimeStatistic:stats
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source responseTime
+attr title "response time statistic"
+par AerocomSys.airCraft.packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft.packetGenerator size 100
+par AerocomSys.airCraft.linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft typename "\"AirCraft\""
+par AerocomSys.dataLink typename "\"DataLink\""
+par AerocomSys.dataLink minCapacity 6000
+par AerocomSys.dataLink maxCapacity 15000
+par AerocomSys.dataLink generationMode 0
+par AerocomSys.dataLink exponentialMean 1
+par AerocomSys.dataLink lognormalMean 1
+par AerocomSys.dataLink lognormalStdev 1
+par AerocomSys typename "\"AerocomSys\""
+
+run General-0-20221129-00:31:32-11009
+attr configname General
+attr datetime 20221129-00:31:32
+attr datetimef 20221129-003132
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 11009
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config network AerocomSys
+
+par AerocomSys.controlTower typename "\"ControlTower\""
+statistic AerocomSys.controlTower responseTimeStatistic:stats
+field count 0
+field mean -nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source responseTime
+attr title "response time statistic"
+par AerocomSys.airCraft.packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft.packetGenerator size 100
+par AerocomSys.airCraft.linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft typename "\"AirCraft\""
+par AerocomSys.dataLink typename "\"DataLink\""
+par AerocomSys.dataLink minCapacity 6000
+par AerocomSys.dataLink maxCapacity 15000
+par AerocomSys.dataLink generationMode 0
+par AerocomSys.dataLink exponentialMean 1
+par AerocomSys.dataLink lognormalMean 1
+par AerocomSys.dataLink lognormalStdev 1
+par AerocomSys typename "\"AerocomSys\""
+

@@ -1,0 +1,27 @@
+file 601 1669678225                                             
+version 3
+run General-0-20221129-00:30:21-10826
+attr configname General
+attr datetime 20221129-00:30:21
+attr datetimef 20221129-003021
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 10826
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config network AerocomSys
+
+vector 0 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+0	591 9 3 3 10 10 1 0 0 0 0
+
