@@ -16,6 +16,8 @@ class DataLink : public cSimpleModule
         cMessage *startVariation;
         double startCapacity;
         double nextCapacity;
+        double minCapacity;
+        double maxCapacity;
         virtual void generate_t();
         virtual void startCapacityVariation();
 

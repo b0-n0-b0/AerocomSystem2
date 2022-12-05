@@ -1,9 +1,12 @@
 simple DataLink
 {
     parameters:
+        // capacity variation extremes
         double minCapacity = default(6000);
         double maxCapacity = default(15000);
-        int generationMode = default(0);		//0 -> lognorm , 1-> exp
+        //0 -> lognorm , 1-> exp
+        int generationMode = default(0);
+        // TODO: look at the generations and investigate the best values for these params		
         double exponentialMean = default(1);
         double lognormalMean = default(1);
         double lognormalStdev = default(1);

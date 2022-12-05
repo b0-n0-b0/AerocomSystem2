@@ -7,9 +7,6 @@
 
 using namespace omnetpp;
 
-/**
- * TODO - Generated class
- */
 class LinkSelector : public cSimpleModule
 {
   protected:

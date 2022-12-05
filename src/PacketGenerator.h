@@ -8,6 +8,8 @@ using namespace omnetpp;
 class PacketGenerator : public cSimpleModule
 {
     private:
+    // packet generation period
+    // TODO: shouldn't this be random?
     double k = 5;
     cMessage *packetToLs;
     simtime_t generationTime;

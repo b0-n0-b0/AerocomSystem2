@@ -7,24 +7,27 @@ void PacketGenerator::initialize()
 {
     generationTime = uniform(0,k,0);
     packetToLs = new cMessage("packetToLs");
-    scheduleAt(simTime() + generationTime, packetToLs ); //start  timer to generate the first packet
+    //start  timer to generate the first packet
+    scheduleAt(simTime() + generationTime, packetToLs );
 }
 
 void PacketGenerator::handleMessage(cMessage *msg)
 {
     if(msg->isSelfMessage()){
-          generateNewPacket(msg); //generate a new packet
+        //generate a new packet
+          generateNewPacket(msg);
        }
 }
 
 
 void PacketGenerator::generateNewPacket(cMessage *msg)
 {
-    AirCraftPacket*  packet= new AirCraftPacket; //create the packet
+    //create the packet
+    AirCraftPacket*  packet= new AirCraftPacket;
     packet->setGenTime(simTime().dbl());
     send(packet, "PG_out");
     generationTime = uniform(0,k,0);
     scheduleAt(simTime() + generationTime, msg);
-    EV<< "generated packet";
+    EV<< "packet generated";
 
 }

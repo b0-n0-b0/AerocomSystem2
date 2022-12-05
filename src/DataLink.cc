@@ -8,9 +8,9 @@ void DataLink::initialize()
 
     //
         startVariation = new cMessage("startVariation");
-        double minCapacity = par("minCapacity");
-        double maxCapacity = par("maxCapacity");
-        startCapacity = uniform(minCapacity, maxCapacity,1);
+        minCapacity = par("minCapacity");
+        maxCapacity = par("maxCapacity");
+        startCapacity = uniform(minCapacity, maxCapacity,2);
         nextCapacity = uniform(minCapacity, maxCapacity,2);
         generate_t();
         scheduleAt(simTime() + t, startVariation);
@@ -31,8 +31,6 @@ void DataLink::startCapacityVariation(){
     //the time t elapsed so we have reached the nextCapacity
     //we then generate a new capacity to be reached
     startCapacity = nextCapacity;
-    double minCapacity = par("minCapacity");
-    double maxCapacity = par("maxCapacity");
     nextCapacity = uniform(minCapacity, maxCapacity, 2);
     // we generate a new t and then start the timer for the capacity selection once again
     generate_t();
