@@ -2,7 +2,7 @@ module AirCraft
 {	parameters:
     	int nDL = parent.nDL;
     gates:
-        output AC_out[parent.nDL];
+        output AC_out[nDL];
     submodules:
         packetGenerator: PacketGenerator {
             @display("p=221,94");

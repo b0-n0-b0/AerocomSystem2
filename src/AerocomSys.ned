@@ -1,7 +1,7 @@
 network AerocomSys
 {
     parameters:
-        int nDL = default(3);
+        int nDL = default(5);
     types:
     submodules:
         controlTower: ControlTower {

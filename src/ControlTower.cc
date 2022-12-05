@@ -1,5 +1,5 @@
 #include "ControlTower.h"
-
+#include "AirCraftPacket_m.h"
 Define_Module(ControlTower);
 
 void ControlTower::initialize()
@@ -13,4 +13,5 @@ void ControlTower::handleMessage(cMessage *msg)
 //    double responseTime = msg->getArrivalTime().dbl() - msg->getSending();
 //    emit(responseTimeSignal, responseTime);
     delete(msg);
+//    EV<< check_and_cast<AirCraftPacket*>(msg)->getGenTime();
 }

@@ -5,13 +5,10 @@
 
 using namespace omnetpp;
 
-/**
- * TODO - Generated class
- */
 class PacketGenerator : public cSimpleModule
 {
     private:
-    double k;
+    double k = 5;
     cMessage *packetToLs;
     simtime_t generationTime;
   protected:
@@ -19,5 +16,4 @@ class PacketGenerator : public cSimpleModule
     virtual void handleMessage(cMessage *msg) override;
     virtual void generateNewPacket(cMessage* msg);
 };
-
 #endif

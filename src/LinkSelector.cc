@@ -1,4 +1,5 @@
 #include "LinkSelector.h"
+#include "DataLink.h"
 
 /*
  Sub Module which manages a FIFO queue, which is responsible for sending packets. In the non monitored operation mode
@@ -9,21 +10,22 @@
 
 Define_Module(LinkSelector);
 
-void LinkSelector::initialize()
+void LinkSelector::initialize(int stage)
 {
-    malusExpire = new cMessage("malusExpire");
-    monitoringExpire = new cMessage("monitoringExpire");
-    nDL = getAncestorPar("nDL");
-    operationMode = par("operationMode"); //0 --> monitored
-
-    if(operationMode == 0 && nDL > 0){
-        m = par("m");
-        X = par("X");
-        monitorDl();
-    }
-    else if(nDL > 0){
-        chosenDL = intrand(nDL);
-        std::cout<<chosenDL;
+    if(stage == 0){
+        malusExpire = new cMessage("malusExpire");
+        monitoringExpire = new cMessage("monitoringExpire");
+        nDL = getAncestorPar("nDL");
+        operationMode = par("operationMode"); //0 --> monitored
+    }else if (stage == 1){
+        if(operationMode == 0 && nDL > 0){
+            m = par("m");
+            X = par("X");
+            monitorDl();
+        }
+        else if(nDL > 0){
+            chosenDL = intrand(nDL,1);
+        }
     }
 }
 
@@ -39,42 +41,44 @@ void LinkSelector::handleMessage(cMessage *msg)
         }
     }
     else{
-        handlePcktArrival(msg);
+        handlePcktArrival(check_and_cast<AirCraftPacket*>(msg));
     }
 }
 
 //capire come prendere vettore dl da altro modulo
 void LinkSelector::getIndexBestCapacity(){
-   int capacity = -1;
-
-    cModule* temp;
-//    temp = getModuleByPath("DataLink");
-//    this will be in a for loop and we need to use strconcat
-    cGate *outgate = gate("LS_out[]");
-//    hopefully this will return the DL to which the AC_out is connected
-    outgate->getPathEndGate()->getOwner();
-//    DataLink* dl;
-//    dl = check_and_cast<DataLink*>(temp);
-//
-//    for(int i = 0; i < nDL; i++){
-//        if(dl[i].getActualCapacity() > capacity){
-//            capacity = dl->aSearchFunction("getActualCapacity");
-//            chosenDl = i;
-//        }
-//    }
+    double capacity = -1;
+    cObject* temp;
+    DataLink* dl;
+    // searching for the best capacity
+    for(int i = 0; i < nDL; ++i){
+        // find the DL connected to the i-th gate
+        cGate *outgate = gate("LS_out",0);
+        temp = outgate->getPathEndGate()->getOwner();
+//         retrieve capacity
+        dl = check_and_cast<DataLink*>(temp);
+        double testedCapacity = dl->getActualCapacity();
+        EV <<"#DL = "<<i<<" capacity: "<< testedCapacity<<"\n";
+        // test and save capacity if needed
+        if(testedCapacity > capacity){
+           capacity = testedCapacity;
+           chosenDL = i;
+       }
+    }
+    EV<<"chosen DL = "<<chosenDL<<"\n";
 }
 
 void LinkSelector::sendPacket(){
     if(!queue.empty() && isScanning == false){
         while(!queue.empty()){
-            cMessage* packet = (cMessage*)queue.front();
+            AirCraftPacket* packet = queue.front();
             queue.pop();
             send(packet,"LS_out", chosenDL);
         }
     }
 }
 
-void LinkSelector::handlePcktArrival(cMessage* msg){
+void LinkSelector::handlePcktArrival(AirCraftPacket* msg){
     queue.push(msg);
     sendPacket();
 }

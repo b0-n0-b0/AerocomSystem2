@@ -7,13 +7,14 @@ void DataLink::initialize()
     //TODO: SIGNALS DEFINITION
 
     //
-    startVariation = new cMessage("startVariation");
-    double minCapacity = par("minCapacity");
-    double maxCapacity = par("maxCapacity");
-    startCapacity = uniform(minCapacity, maxCapacity);
-    nextCapacity = uniform(minCapacity, maxCapacity);
-    generate_t();
-    scheduleAt(simTime() + t, startVariation);
+        startVariation = new cMessage("startVariation");
+        double minCapacity = par("minCapacity");
+        double maxCapacity = par("maxCapacity");
+        startCapacity = uniform(minCapacity, maxCapacity,1);
+        nextCapacity = uniform(minCapacity, maxCapacity,2);
+        generate_t();
+        scheduleAt(simTime() + t, startVariation);
+
 }
 
 void DataLink::handleMessage(cMessage *msg)
@@ -32,7 +33,7 @@ void DataLink::startCapacityVariation(){
     startCapacity = nextCapacity;
     double minCapacity = par("minCapacity");
     double maxCapacity = par("maxCapacity");
-    nextCapacity = uniform(minCapacity, maxCapacity);
+    nextCapacity = uniform(minCapacity, maxCapacity, 2);
     // we generate a new t and then start the timer for the capacity selection once again
     generate_t();
     scheduleAt(simTime() + t, startVariation);
@@ -46,10 +47,10 @@ void DataLink::generate_t(){
     double exponentialMean = par("exponentialMean");
     if(generationMode == 0){
         // TODO: which values for mean, stdev and rng?
-        t = lognormal(lognormalMean, lognormalStdev);
+        t = lognormal(lognormalMean, lognormalStdev,2);
     }else if (generationMode == 1){
         // TODO: which values for mean and rng?
-        t = exponential(exponentialMean);
+        t = exponential(exponentialMean,2);
     }
     // I save the instant in which I generated the t, this instant will be used do calculate the actual capacity
     lastGenerationTime = simTime().dbl();
