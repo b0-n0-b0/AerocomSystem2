@@ -2,7 +2,7 @@ simple LinkSelector
 {
     parameters:
         // malus
-        int X = default(5);
+        double X = default(5);
         // scan period
         int m = default(10);
         // operation mode: 0 -> monitored, 1 -> non-monitored

@@ -12,5 +12,5 @@ simple DataLink
         double lognormalStdev = default(1);
 	gates:
 	    output DL_out;
-	    input DL_in;
+	    input DL_in[parent.nAC];
 }

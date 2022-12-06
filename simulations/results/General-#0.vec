@@ -1,0 +1,62 @@
+version 3
+run General-0-20221206-11:33:36-5896
+attr configname General
+attr datetime 20221206-11:33:36
+attr datetimef 20221206-113336
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 5896
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config network AerocomSys
+config num-rngs 3
+config sim-time-limit 100s
+config rng-class omnetpp::cMersenneTwister
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-0 0
+config **.ControlTower.responseTime.result-recording-modes +histogram
+
+vector 0 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+0	80	5	2.255932488479
+0	81	5	0.067996438593
+0	82	5	2.035776918055
+0	83	5	0.548103891778
+0	84	5	1.424053175142
+0	85	5	0.060771702556
+0	86	5	0.77867127955
+0	87	5	1.98618314811
+0	88	5	0.710271900753
+0	89	5	2.275584113086
+0	90	5	0.353675571969
+0	91	5	0.763741313713
+0	92	5	2.881726016058
+0	93	5	1.882181518013
+0	94	5	1.598616639385
+0	101	5.347744559403	0
+0	110	6.138536327052	0
+0	117	6.624584244564	0
+0	126	7.290799035691	0
+0	130	7.311668525217	0
+0	134	7.331889418419	0
+0	138	7.472681860673	0
+0	143	7.645979329245	0
+0	149	7.747071324847	0
+0	153	7.767535903258	0
+0	157	7.779451116221	0
+0	163	8.219697180903	0
+0	167	8.24835326639	0
+0	172	8.512739740546	0
+0	176	8.950107153505	0
+

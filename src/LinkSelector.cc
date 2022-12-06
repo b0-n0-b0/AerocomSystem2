@@ -29,6 +29,8 @@ void LinkSelector::initialize(int stage)
         }
         else if(nDL > 0){
             chosenDL = intrand(nDL,1);
+            isScanning = false;
+            EV<<"chosen DL = "<<chosenDL<<"\n";
         }
     }
 }
@@ -80,14 +82,23 @@ void LinkSelector::sendPacket(){
     while(!queue.empty() && isScanning == false){
         AirCraftPacket* packet = queue.front();
         queue.pop();
+//        packet->setGenTime(packet->getGenTime() - packet->size / )
+        // TODO: inserire nel pacchetto (size/capacità nel momento dell'invio), segnale per il service time
+        // segnale per il response time
+//        response = tempo in coda + dimensione/capacitàDL
         send(packet,"LS_out", chosenDL);
+
     }
 }
 
 void LinkSelector::handlePcktArrival(AirCraftPacket* msg){
     // save message in queue
-    queue.push(msg);
-    sendPacket();
+    if(nDL > 0){
+        queue.push(msg);
+        sendPacket();
+    }else{
+        delete(msg);
+    }
 }
 
 void LinkSelector::handleMalus(){

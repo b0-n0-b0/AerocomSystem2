@@ -1,0 +1,69 @@
+version 3
+run non-monitoring-exponential-0-20221206-12:00:58-6930
+attr configname non-monitoring-exponential
+attr datetime 20221206-12:00:58
+attr datetimef 20221206-120058
+attr experiment non-monitoring-exponential
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 6930
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config description "aircraft in non-monitoring mode, new capacity selected with exponential distrbution"
+config **.k 0.1
+config **.X 0.7
+config **.m 1
+config **.generationMode 1
+config **.operationMode 0
+config network AerocomSys
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 100s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 1
+config **.nAC 1
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-0 0
+
+par AerocomSys.controlTower typename "\"ControlTower\""
+statistic AerocomSys.controlTower responseTimeStatistic:stats
+field count 29
+field mean 0.2738631076791
+field stddev 0.23843824547557
+field min 0
+field max 0.672127799409
+field sum 7.942030122694
+field sqrsum 3.7669073640351
+attr recordingmode stats
+attr source responseTime
+attr title "response time statistic"
+par AerocomSys.airCraft[0].packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft[0].packetGenerator size 100
+par AerocomSys.airCraft[0].packetGenerator k 0.1
+par AerocomSys.airCraft[0].linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft[0].linkSelector X 0.7
+par AerocomSys.airCraft[0].linkSelector m 1
+par AerocomSys.airCraft[0].linkSelector operationMode 0
+par AerocomSys.airCraft[0] typename "\"AirCraft\""
+par AerocomSys.airCraft[0] nDL 1
+par AerocomSys.dataLink[0] typename "\"DataLink\""
+par AerocomSys.dataLink[0] minCapacity 6000
+par AerocomSys.dataLink[0] maxCapacity 15000
+par AerocomSys.dataLink[0] generationMode 1
+par AerocomSys.dataLink[0] exponentialMean 1
+par AerocomSys.dataLink[0] lognormalMean 1
+par AerocomSys.dataLink[0] lognormalStdev 1
+par AerocomSys typename "\"AerocomSys\""
+par AerocomSys nDL 1
+par AerocomSys nAC 1
+

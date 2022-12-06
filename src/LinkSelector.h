@@ -12,7 +12,7 @@ class LinkSelector : public cSimpleModule
   protected:
 //    virtual void initialize() override;
     virtual void initialize(int stage) override;
-    virtual int numInitStages() const { return 2; } ;
+    virtual int numInitStages() const { return 2; };
     virtual void handleMessage(cMessage *msg) override;
     cMessage* malusExpire;
     cMessage* monitoringExpire;
@@ -22,7 +22,7 @@ class LinkSelector : public cSimpleModule
     int chosenDL;
     int nDL;
     int operationMode;
-    int X;
+    double X;
     int m;
     bool isScanning = true;
 

@@ -1,0 +1,44 @@
+file 1833 1670324561                                            
+version 3
+run non-monitoring-exponential-0-20221206-12:00:58-6930
+attr configname non-monitoring-exponential
+attr datetime 20221206-12:00:58
+attr datetimef 20221206-120058
+attr experiment non-monitoring-exponential
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 6930
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config description "aircraft in non-monitoring mode, new capacity selected with exponential distrbution"
+config **.k 0.1
+config **.X 0.7
+config **.m 1
+config **.generationMode 1
+config **.operationMode 0
+config network AerocomSys
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 100s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 1
+config **.nAC 1
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-0 0
+
+vector 0 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+0	1139 693 33 122 0.7 1.7 29 0 0.672127799409 7.942030122694 3.7669073640351
+

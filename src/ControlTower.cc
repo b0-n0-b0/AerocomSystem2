@@ -9,9 +9,9 @@ void ControlTower::initialize()
 
 void ControlTower::handleMessage(cMessage *msg)
 {
-    //TODO: check the equivalent for getSending implemented by Mariella
-//    double responseTime = msg->getArrivalTime().dbl() - msg->getSending();
-//    emit(responseTimeSignal, responseTime);
+    double responseTime = msg->getArrivalTime().dbl() - check_and_cast<AirCraftPacket*>(msg)->getGenTime();
+//    EV << responseTime;
+    emit(responseTimeSignal, responseTime);
     delete(msg);
 //    EV<< check_and_cast<AirCraftPacket*>(msg)->getGenTime();
 }

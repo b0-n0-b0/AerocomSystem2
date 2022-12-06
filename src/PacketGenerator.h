@@ -9,8 +9,7 @@ class PacketGenerator : public cSimpleModule
 {
     private:
     // packet generation period
-    // TODO: shouldn't this be random?
-    double k = 5;
+    double k;
     cMessage *packetToLs;
     simtime_t generationTime;
   protected:
