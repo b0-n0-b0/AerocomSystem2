@@ -38,6 +38,7 @@ class AirCraftPacket;
  * {
  *     double genTime;
  *     int size;
+ *     double serviceTime;
  * }
  * </pre>
  */
@@ -46,6 +47,7 @@ class AirCraftPacket : public ::omnetpp::cPacket
   protected:
     double genTime = 0;
     int size = 0;
+    double serviceTime = 0;
 
   private:
     void copy(const AirCraftPacket& other);
@@ -67,6 +69,9 @@ class AirCraftPacket : public ::omnetpp::cPacket
 
     virtual int getSize() const;
     virtual void setSize(int size);
+
+    virtual double getServiceTime() const;
+    virtual void setServiceTime(double serviceTime);
 };
 
 inline void doParsimPacking(omnetpp::cCommBuffer *b, const AirCraftPacket& obj) {obj.parsimPack(b);}

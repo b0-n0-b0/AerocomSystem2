@@ -55,18 +55,22 @@ void LinkSelector::handleMessage(cMessage *msg)
     }
 }
 
-void LinkSelector::getIndexBestCapacity(){
-    double capacity = -1;
+double LinkSelector::getIndexCapacity(int i){
     cObject* temp;
     DataLink* dl;
+    cGate *outgate = gate("LS_out",i);
+    temp = outgate->getPathEndGate()->getOwner();
+    // retrieve capacity
+    dl = check_and_cast<DataLink*>(temp);
+    return dl->getActualCapacity();
+}
+
+void LinkSelector::getIndexBestCapacity(){
+    double capacity = -1;
     // searching for the best capacity
     for(int i = 0; i < nDL; ++i){
         // find the DL connected to the i-th gate
-        cGate *outgate = gate("LS_out",i);
-        temp = outgate->getPathEndGate()->getOwner();
-        // retrieve capacity
-        dl = check_and_cast<DataLink*>(temp);
-        double testedCapacity = dl->getActualCapacity();
+        double testedCapacity = getIndexCapacity(i);
         EV <<"#DL = "<<i<<" capacity: "<< testedCapacity<<"\n";
         // test and save capacity if needed
         if(testedCapacity > capacity){
@@ -77,15 +81,21 @@ void LinkSelector::getIndexBestCapacity(){
     EV<<"chosen DL = "<<chosenDL<<"\n";
 }
 
+
 void LinkSelector::sendPacket(){
     // if we are not scanning and the queue has packets in it, we send them
     while(!queue.empty() && isScanning == false){
         AirCraftPacket* packet = queue.front();
         queue.pop();
-//        packet->setGenTime(packet->getGenTime() - packet->size / )
-        // TODO: inserire nel pacchetto (size/capacità nel momento dell'invio), segnale per il service time
-        // segnale per il response time
-//        response = tempo in coda + dimensione/capacitàDL
+        // signal for the waiting time
+        double startWaitingTime = waitingTimeQueue.front();
+        waitingTimeQueue.pop();
+        emit(waitingTimeSignal, (simTime().dbl() - startWaitingTime));
+        // signal for the service time
+        double capacity = getIndexCapacity(chosenDL);
+        packet->setServiceTime(packet->getSize()/capacity);
+        emit(serviceTimeSignal, packet->getServiceTime());
+        //packet sent
         send(packet,"LS_out", chosenDL);
 
     }
@@ -94,7 +104,11 @@ void LinkSelector::sendPacket(){
 void LinkSelector::handlePcktArrival(AirCraftPacket* msg){
     // save message in queue
     if(nDL > 0){
+        // signal for the queue length
         queue.push(msg);
+        emit(queueLengthSignal, queue.size());
+        //queue used to memorize the instant when a packet enters the queue
+        waitingTimeQueue.push(simTime().dbl());
         sendPacket();
     }else{
         delete(msg);

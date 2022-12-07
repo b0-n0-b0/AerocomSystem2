@@ -1,9 +1,9 @@
-file 1833 1670324561                                            
+file 1509 1670455130                                            
 version 3
-run non-monitoring-exponential-0-20221206-12:00:58-6930
+run non-monitoring-exponential-0-20221208-00:18:33-2144
 attr configname non-monitoring-exponential
-attr datetime 20221206-12:00:58
-attr datetimef 20221206-120058
+attr datetime 20221208-00:18:33
+attr datetimef 20221208-001833
 attr experiment non-monitoring-exponential
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -11,7 +11,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network AerocomSys
-attr processid 6930
+attr processid 2144
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -40,5 +40,5 @@ vector 0 AerocomSys.controlTower responseTimeStatistic:vector ETV
 attr recordingmode vector
 attr source responseTime
 attr title "response time statistic"
-0	1139 693 33 122 0.7 1.7 29 0 0.672127799409 7.942030122694 3.7669073640351
+0	1139 369 33 67 0.7 0.931505924185 16 0 0.64511864977 3.344641876829 1.5114158180389
 

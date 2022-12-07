@@ -19,14 +19,20 @@ class LinkSelector : public cSimpleModule
 
   private:
     std::queue<AirCraftPacket*> queue;
+    std::queue<double*> waitingTimeQueue;
     int chosenDL;
     int nDL;
     int operationMode;
     double X;
     int m;
     bool isScanning = true;
+    //signals
+    simsignal_t serviceTimeSignal;
+    simsignal_t waitingTimeSignal;
+    simsignal_t queueLengthSignal;
 
     void getIndexBestCapacity();
+    double getIndexCapacity(int i);
     void sendPacket();
     void handlePcktArrival(AirCraftPacket* msg);
     void handleMalus();

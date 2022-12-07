@@ -177,6 +177,7 @@ void AirCraftPacket::copy(const AirCraftPacket& other)
 {
     this->genTime = other.genTime;
     this->size = other.size;
+    this->serviceTime = other.serviceTime;
 }
 
 void AirCraftPacket::parsimPack(omnetpp::cCommBuffer *b) const
@@ -184,6 +185,7 @@ void AirCraftPacket::parsimPack(omnetpp::cCommBuffer *b) const
     ::omnetpp::cPacket::parsimPack(b);
     doParsimPacking(b,this->genTime);
     doParsimPacking(b,this->size);
+    doParsimPacking(b,this->serviceTime);
 }
 
 void AirCraftPacket::parsimUnpack(omnetpp::cCommBuffer *b)
@@ -191,6 +193,7 @@ void AirCraftPacket::parsimUnpack(omnetpp::cCommBuffer *b)
     ::omnetpp::cPacket::parsimUnpack(b);
     doParsimUnpacking(b,this->genTime);
     doParsimUnpacking(b,this->size);
+    doParsimUnpacking(b,this->serviceTime);
 }
 
 double AirCraftPacket::getGenTime() const
@@ -213,6 +216,16 @@ void AirCraftPacket::setSize(int size)
     this->size = size;
 }
 
+double AirCraftPacket::getServiceTime() const
+{
+    return this->serviceTime;
+}
+
+void AirCraftPacket::setServiceTime(double serviceTime)
+{
+    this->serviceTime = serviceTime;
+}
+
 class AirCraftPacketDescriptor : public omnetpp::cClassDescriptor
 {
   private:
@@ -220,6 +233,7 @@ class AirCraftPacketDescriptor : public omnetpp::cClassDescriptor
     enum FieldConstants {
         FIELD_genTime,
         FIELD_size,
+        FIELD_serviceTime,
     };
   public:
     AirCraftPacketDescriptor();
@@ -286,7 +300,7 @@ const char *AirCraftPacketDescriptor::getProperty(const char *propertyName) cons
 int AirCraftPacketDescriptor::getFieldCount() const
 {
     omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
-    return base ? 2+base->getFieldCount() : 2;
+    return base ? 3+base->getFieldCount() : 3;
 }
 
 unsigned int AirCraftPacketDescriptor::getFieldTypeFlags(int field) const
@@ -300,8 +314,9 @@ unsigned int AirCraftPacketDescriptor::getFieldTypeFlags(int field) const
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,    // FIELD_genTime
         FD_ISEDITABLE,    // FIELD_size
+        FD_ISEDITABLE,    // FIELD_serviceTime
     };
-    return (field >= 0 && field < 2) ? fieldTypeFlags[field] : 0;
+    return (field >= 0 && field < 3) ? fieldTypeFlags[field] : 0;
 }
 
 const char *AirCraftPacketDescriptor::getFieldName(int field) const
@@ -315,8 +330,9 @@ const char *AirCraftPacketDescriptor::getFieldName(int field) const
     static const char *fieldNames[] = {
         "genTime",
         "size",
+        "serviceTime",
     };
-    return (field >= 0 && field < 2) ? fieldNames[field] : nullptr;
+    return (field >= 0 && field < 3) ? fieldNames[field] : nullptr;
 }
 
 int AirCraftPacketDescriptor::findField(const char *fieldName) const
@@ -325,6 +341,7 @@ int AirCraftPacketDescriptor::findField(const char *fieldName) const
     int baseIndex = base ? base->getFieldCount() : 0;
     if (strcmp(fieldName, "genTime") == 0) return baseIndex + 0;
     if (strcmp(fieldName, "size") == 0) return baseIndex + 1;
+    if (strcmp(fieldName, "serviceTime") == 0) return baseIndex + 2;
     return base ? base->findField(fieldName) : -1;
 }
 
@@ -339,8 +356,9 @@ const char *AirCraftPacketDescriptor::getFieldTypeString(int field) const
     static const char *fieldTypeStrings[] = {
         "double",    // FIELD_genTime
         "int",    // FIELD_size
+        "double",    // FIELD_serviceTime
     };
-    return (field >= 0 && field < 2) ? fieldTypeStrings[field] : nullptr;
+    return (field >= 0 && field < 3) ? fieldTypeStrings[field] : nullptr;
 }
 
 const char **AirCraftPacketDescriptor::getFieldPropertyNames(int field) const
@@ -425,6 +443,7 @@ std::string AirCraftPacketDescriptor::getFieldValueAsString(omnetpp::any_ptr obj
     switch (field) {
         case FIELD_genTime: return double2string(pp->getGenTime());
         case FIELD_size: return long2string(pp->getSize());
+        case FIELD_serviceTime: return double2string(pp->getServiceTime());
         default: return "";
     }
 }
@@ -443,6 +462,7 @@ void AirCraftPacketDescriptor::setFieldValueAsString(omnetpp::any_ptr object, in
     switch (field) {
         case FIELD_genTime: pp->setGenTime(string2double(value)); break;
         case FIELD_size: pp->setSize(string2long(value)); break;
+        case FIELD_serviceTime: pp->setServiceTime(string2double(value)); break;
         default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'AirCraftPacket'", field);
     }
 }
@@ -459,6 +479,7 @@ omnetpp::cValue AirCraftPacketDescriptor::getFieldValue(omnetpp::any_ptr object,
     switch (field) {
         case FIELD_genTime: return pp->getGenTime();
         case FIELD_size: return pp->getSize();
+        case FIELD_serviceTime: return pp->getServiceTime();
         default: throw omnetpp::cRuntimeError("Cannot return field %d of class 'AirCraftPacket' as cValue -- field index out of range?", field);
     }
 }
@@ -477,6 +498,7 @@ void AirCraftPacketDescriptor::setFieldValue(omnetpp::any_ptr object, int field,
     switch (field) {
         case FIELD_genTime: pp->setGenTime(value.doubleValue()); break;
         case FIELD_size: pp->setSize(omnetpp::checked_int_cast<int>(value.intValue())); break;
+        case FIELD_serviceTime: pp->setServiceTime(value.doubleValue()); break;
         default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'AirCraftPacket'", field);
     }
 }
