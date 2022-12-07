@@ -7,7 +7,7 @@
 // all the available data links every m seconds and selects the one with the highest capacity. In the monitored mode there’s
 // also a malus due to the monitoring delay X. After the delay the operations are handled as usual.
 
-
+// TODO: test and debug all the signals
 Define_Module(LinkSelector);
 
 void LinkSelector::initialize(int stage)
