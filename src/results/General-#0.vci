@@ -1,5 +1,5 @@
-file 812 1670321665                                             
-version 3
+file 845 1670330835                                             
+version 2
 run General-0-20221206-11:12:05-4565
 attr configname General
 attr datetime 20221206-11:12:05
@@ -28,7 +28,4 @@ vector 0 AerocomSys.controlTower responseTimeStatistic:vector ETV
 attr recordingmode vector
 attr source responseTime
 attr title "response time statistic"
-0	745 22 13 13 5 5 1 2.255932488479 2.255932488479 2.255932488479 5.0892313925751
-0	767 22 18 18 5.708290593466 5.708290593466 1 0 0 0 0
-0	789 22 27 27 9.284237418324 9.284237418324 1 0 0 0 0
-
+0	774 71 13 27 5 9.284237418324 3 0 2.255932488479 2.255932488479 5.0892313925751

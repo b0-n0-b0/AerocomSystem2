@@ -90,7 +90,7 @@ void LinkSelector::sendPacket(){
         // signal for the waiting time
         double startWaitingTime = waitingTimeQueue.front();
         waitingTimeQueue.pop();
-        emit(waitingTimeSignal, (simTime().dbl() - startWaitingTime));
+        emit(waitingTimeSignal, (simTime().dbl() - 1));
         // signal for the service time
         double capacity = getIndexCapacity(chosenDL);
         packet->setServiceTime(packet->getSize()/capacity);

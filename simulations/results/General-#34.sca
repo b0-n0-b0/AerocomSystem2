@@ -1,0 +1,125 @@
+version 3
+run General-34-20221208-13:42:20-14576
+attr configname General
+attr datetime 20221208-13:42:20
+attr datetimef 20221208-134220
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 14576
+attr repetition 34
+attr replication #34
+attr resultdir results
+attr runnumber 34
+attr seedset 34
+config network AerocomSys
+config repeat 100
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 4s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 5
+config **.nAC 1
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-0 0
+
+par AerocomSys.controlTower typename "\"ControlTower\""
+statistic AerocomSys.controlTower responseTimeStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source responseTime
+attr title "response time statistic"
+par AerocomSys.airCraft[0].packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft[0].packetGenerator size 100
+par AerocomSys.airCraft[0].packetGenerator k 1
+par AerocomSys.airCraft[0].linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft[0].linkSelector X 5
+par AerocomSys.airCraft[0].linkSelector m 10
+par AerocomSys.airCraft[0].linkSelector operationMode 0
+statistic AerocomSys.airCraft[0].linkSelector queueLengthStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source queueLength
+attr title "queue length statistic"
+statistic AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source waitingTime
+attr title "waiting time statistic"
+statistic AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source serviceTime
+attr title "service time statistic"
+par AerocomSys.airCraft[0] typename "\"AirCraft\""
+par AerocomSys.airCraft[0] nDL 5
+par AerocomSys.dataLink[0] typename "\"DataLink\""
+par AerocomSys.dataLink[0] minCapacity 6000
+par AerocomSys.dataLink[0] maxCapacity 15000
+par AerocomSys.dataLink[0] generationMode 0
+par AerocomSys.dataLink[0] exponentialMean 1
+par AerocomSys.dataLink[0] lognormalMean 1
+par AerocomSys.dataLink[0] lognormalStdev 1
+par AerocomSys.dataLink[1] typename "\"DataLink\""
+par AerocomSys.dataLink[1] minCapacity 6000
+par AerocomSys.dataLink[1] maxCapacity 15000
+par AerocomSys.dataLink[1] generationMode 0
+par AerocomSys.dataLink[1] exponentialMean 1
+par AerocomSys.dataLink[1] lognormalMean 1
+par AerocomSys.dataLink[1] lognormalStdev 1
+par AerocomSys.dataLink[2] typename "\"DataLink\""
+par AerocomSys.dataLink[2] minCapacity 6000
+par AerocomSys.dataLink[2] maxCapacity 15000
+par AerocomSys.dataLink[2] generationMode 0
+par AerocomSys.dataLink[2] exponentialMean 1
+par AerocomSys.dataLink[2] lognormalMean 1
+par AerocomSys.dataLink[2] lognormalStdev 1
+par AerocomSys.dataLink[3] typename "\"DataLink\""
+par AerocomSys.dataLink[3] minCapacity 6000
+par AerocomSys.dataLink[3] maxCapacity 15000
+par AerocomSys.dataLink[3] generationMode 0
+par AerocomSys.dataLink[3] exponentialMean 1
+par AerocomSys.dataLink[3] lognormalMean 1
+par AerocomSys.dataLink[3] lognormalStdev 1
+par AerocomSys.dataLink[4] typename "\"DataLink\""
+par AerocomSys.dataLink[4] minCapacity 6000
+par AerocomSys.dataLink[4] maxCapacity 15000
+par AerocomSys.dataLink[4] generationMode 0
+par AerocomSys.dataLink[4] exponentialMean 1
+par AerocomSys.dataLink[4] lognormalMean 1
+par AerocomSys.dataLink[4] lognormalStdev 1
+par AerocomSys typename "\"AerocomSys\""
+par AerocomSys nDL 5
+par AerocomSys nAC 1
+

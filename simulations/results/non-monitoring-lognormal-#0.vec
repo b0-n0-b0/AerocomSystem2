@@ -1,0 +1,97 @@
+version 3
+run non-monitoring-lognormal-0-20221208-13:11:30-15412
+attr configname non-monitoring-lognormal
+attr datetime 20221208-13:11:30
+attr datetimef 20221208-131130
+attr experiment non-monitoring-lognormal
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 15412
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config description "aircraft in non-monitoring mode, new capacity selected with lognormal distrbution"
+config **.k 5
+config **.lognormalMean 1
+config **.lognormalStdev 1
+config **.generationMode 0
+config **.operationMode 1
+config network AerocomSys
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 100s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 5
+config **.nAC 5
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-0 0
+
+vector 0 AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 1 AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 2 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+vector 3 AerocomSys.airCraft[1].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 4 AerocomSys.airCraft[1].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 5 AerocomSys.airCraft[4].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 6 AerocomSys.airCraft[4].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 7 AerocomSys.airCraft[2].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 8 AerocomSys.airCraft[2].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 9 AerocomSys.airCraft[3].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 10 AerocomSys.airCraft[3].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+0	5	2.744067511521	1.744067511521
+1	5	2.744067511521	0.010557725854956
+2	7	2.744067511521	0.010557725854956
+2	11	2.964223081945	0.0095768328772589
+2	16	3.01381685189	0.010382102609826
+2	21	3.575946824858	0.010593587790705
+2	26	4.22132872045	0.0081204353322583
+3	9	2.964223081945	1.964223081945
+4	9	2.964223081945	0.0095768328772589
+5	14	3.01381685189	2.01381685189
+6	14	3.01381685189	0.010382102609826
+7	19	3.575946824858	2.575946824858
+8	19	3.575946824858	0.010593587790705
+9	24	4.22132872045	3.22132872045
+10	24	4.22132872045	0.0081204353322583
+

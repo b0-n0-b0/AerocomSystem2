@@ -1,8 +1,8 @@
 version 3
-run General-0-20221206-11:33:36-5896
+run General-0-20221208-13:42:20-14576
 attr configname General
-attr datetime 20221206-11:33:36
-attr datetimef 20221206-113336
+attr datetime 20221208-13:42:20
+attr datetimef 20221208-134220
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -10,113 +10,80 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network AerocomSys
-attr processid 5896
+attr processid 14576
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
 config network AerocomSys
+config repeat 100
 config num-rngs 3
-config sim-time-limit 100s
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 4s
 config rng-class omnetpp::cMersenneTwister
+config **.nDL 5
+config **.nAC 1
 config **.PacketGenerator.rng-0 0
 config **.LinkSelector.rng-1 1
 config **.DataLink[*].rng-0 0
-config **.ControlTower.responseTime.result-recording-modes +histogram
 
 par AerocomSys.controlTower typename "\"ControlTower\""
 statistic AerocomSys.controlTower responseTimeStatistic:stats
-field count 30
-field mean 0.65410953717467
-field stddev 0.91122196550256
-field min 0
-field max 2.881726016058
-field sum 19.62328611524
-field sqrsum 36.915217240702
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
 attr recordingmode stats
 attr source responseTime
 attr title "response time statistic"
 par AerocomSys.airCraft[0].packetGenerator typename "\"PacketGenerator\""
 par AerocomSys.airCraft[0].packetGenerator size 100
+par AerocomSys.airCraft[0].packetGenerator k 1
 par AerocomSys.airCraft[0].linkSelector typename "\"LinkSelector\""
 par AerocomSys.airCraft[0].linkSelector X 5
 par AerocomSys.airCraft[0].linkSelector m 10
 par AerocomSys.airCraft[0].linkSelector operationMode 0
+statistic AerocomSys.airCraft[0].linkSelector queueLengthStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source queueLength
+attr title "queue length statistic"
+statistic AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source waitingTime
+attr title "waiting time statistic"
+statistic AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source serviceTime
+attr title "service time statistic"
 par AerocomSys.airCraft[0] typename "\"AirCraft\""
-par AerocomSys.airCraft[0] nDL 20
-par AerocomSys.airCraft[1].packetGenerator typename "\"PacketGenerator\""
-par AerocomSys.airCraft[1].packetGenerator size 100
-par AerocomSys.airCraft[1].linkSelector typename "\"LinkSelector\""
-par AerocomSys.airCraft[1].linkSelector X 5
-par AerocomSys.airCraft[1].linkSelector m 10
-par AerocomSys.airCraft[1].linkSelector operationMode 0
-par AerocomSys.airCraft[1] typename "\"AirCraft\""
-par AerocomSys.airCraft[1] nDL 20
-par AerocomSys.airCraft[2].packetGenerator typename "\"PacketGenerator\""
-par AerocomSys.airCraft[2].packetGenerator size 100
-par AerocomSys.airCraft[2].linkSelector typename "\"LinkSelector\""
-par AerocomSys.airCraft[2].linkSelector X 5
-par AerocomSys.airCraft[2].linkSelector m 10
-par AerocomSys.airCraft[2].linkSelector operationMode 0
-par AerocomSys.airCraft[2] typename "\"AirCraft\""
-par AerocomSys.airCraft[2] nDL 20
-par AerocomSys.airCraft[3].packetGenerator typename "\"PacketGenerator\""
-par AerocomSys.airCraft[3].packetGenerator size 100
-par AerocomSys.airCraft[3].linkSelector typename "\"LinkSelector\""
-par AerocomSys.airCraft[3].linkSelector X 5
-par AerocomSys.airCraft[3].linkSelector m 10
-par AerocomSys.airCraft[3].linkSelector operationMode 0
-par AerocomSys.airCraft[3] typename "\"AirCraft\""
-par AerocomSys.airCraft[3] nDL 20
-par AerocomSys.airCraft[4].packetGenerator typename "\"PacketGenerator\""
-par AerocomSys.airCraft[4].packetGenerator size 100
-par AerocomSys.airCraft[4].linkSelector typename "\"LinkSelector\""
-par AerocomSys.airCraft[4].linkSelector X 5
-par AerocomSys.airCraft[4].linkSelector m 10
-par AerocomSys.airCraft[4].linkSelector operationMode 0
-par AerocomSys.airCraft[4] typename "\"AirCraft\""
-par AerocomSys.airCraft[4] nDL 20
-par AerocomSys.airCraft[5].packetGenerator typename "\"PacketGenerator\""
-par AerocomSys.airCraft[5].packetGenerator size 100
-par AerocomSys.airCraft[5].linkSelector typename "\"LinkSelector\""
-par AerocomSys.airCraft[5].linkSelector X 5
-par AerocomSys.airCraft[5].linkSelector m 10
-par AerocomSys.airCraft[5].linkSelector operationMode 0
-par AerocomSys.airCraft[5] typename "\"AirCraft\""
-par AerocomSys.airCraft[5] nDL 20
-par AerocomSys.airCraft[6].packetGenerator typename "\"PacketGenerator\""
-par AerocomSys.airCraft[6].packetGenerator size 100
-par AerocomSys.airCraft[6].linkSelector typename "\"LinkSelector\""
-par AerocomSys.airCraft[6].linkSelector X 5
-par AerocomSys.airCraft[6].linkSelector m 10
-par AerocomSys.airCraft[6].linkSelector operationMode 0
-par AerocomSys.airCraft[6] typename "\"AirCraft\""
-par AerocomSys.airCraft[6] nDL 20
-par AerocomSys.airCraft[7].packetGenerator typename "\"PacketGenerator\""
-par AerocomSys.airCraft[7].packetGenerator size 100
-par AerocomSys.airCraft[7].linkSelector typename "\"LinkSelector\""
-par AerocomSys.airCraft[7].linkSelector X 5
-par AerocomSys.airCraft[7].linkSelector m 10
-par AerocomSys.airCraft[7].linkSelector operationMode 0
-par AerocomSys.airCraft[7] typename "\"AirCraft\""
-par AerocomSys.airCraft[7] nDL 20
-par AerocomSys.airCraft[8].packetGenerator typename "\"PacketGenerator\""
-par AerocomSys.airCraft[8].packetGenerator size 100
-par AerocomSys.airCraft[8].linkSelector typename "\"LinkSelector\""
-par AerocomSys.airCraft[8].linkSelector X 5
-par AerocomSys.airCraft[8].linkSelector m 10
-par AerocomSys.airCraft[8].linkSelector operationMode 0
-par AerocomSys.airCraft[8] typename "\"AirCraft\""
-par AerocomSys.airCraft[8] nDL 20
-par AerocomSys.airCraft[9].packetGenerator typename "\"PacketGenerator\""
-par AerocomSys.airCraft[9].packetGenerator size 100
-par AerocomSys.airCraft[9].linkSelector typename "\"LinkSelector\""
-par AerocomSys.airCraft[9].linkSelector X 5
-par AerocomSys.airCraft[9].linkSelector m 10
-par AerocomSys.airCraft[9].linkSelector operationMode 0
-par AerocomSys.airCraft[9] typename "\"AirCraft\""
-par AerocomSys.airCraft[9] nDL 20
+par AerocomSys.airCraft[0] nDL 5
 par AerocomSys.dataLink[0] typename "\"DataLink\""
 par AerocomSys.dataLink[0] minCapacity 6000
 par AerocomSys.dataLink[0] maxCapacity 15000
@@ -152,112 +119,7 @@ par AerocomSys.dataLink[4] generationMode 0
 par AerocomSys.dataLink[4] exponentialMean 1
 par AerocomSys.dataLink[4] lognormalMean 1
 par AerocomSys.dataLink[4] lognormalStdev 1
-par AerocomSys.dataLink[5] typename "\"DataLink\""
-par AerocomSys.dataLink[5] minCapacity 6000
-par AerocomSys.dataLink[5] maxCapacity 15000
-par AerocomSys.dataLink[5] generationMode 0
-par AerocomSys.dataLink[5] exponentialMean 1
-par AerocomSys.dataLink[5] lognormalMean 1
-par AerocomSys.dataLink[5] lognormalStdev 1
-par AerocomSys.dataLink[6] typename "\"DataLink\""
-par AerocomSys.dataLink[6] minCapacity 6000
-par AerocomSys.dataLink[6] maxCapacity 15000
-par AerocomSys.dataLink[6] generationMode 0
-par AerocomSys.dataLink[6] exponentialMean 1
-par AerocomSys.dataLink[6] lognormalMean 1
-par AerocomSys.dataLink[6] lognormalStdev 1
-par AerocomSys.dataLink[7] typename "\"DataLink\""
-par AerocomSys.dataLink[7] minCapacity 6000
-par AerocomSys.dataLink[7] maxCapacity 15000
-par AerocomSys.dataLink[7] generationMode 0
-par AerocomSys.dataLink[7] exponentialMean 1
-par AerocomSys.dataLink[7] lognormalMean 1
-par AerocomSys.dataLink[7] lognormalStdev 1
-par AerocomSys.dataLink[8] typename "\"DataLink\""
-par AerocomSys.dataLink[8] minCapacity 6000
-par AerocomSys.dataLink[8] maxCapacity 15000
-par AerocomSys.dataLink[8] generationMode 0
-par AerocomSys.dataLink[8] exponentialMean 1
-par AerocomSys.dataLink[8] lognormalMean 1
-par AerocomSys.dataLink[8] lognormalStdev 1
-par AerocomSys.dataLink[9] typename "\"DataLink\""
-par AerocomSys.dataLink[9] minCapacity 6000
-par AerocomSys.dataLink[9] maxCapacity 15000
-par AerocomSys.dataLink[9] generationMode 0
-par AerocomSys.dataLink[9] exponentialMean 1
-par AerocomSys.dataLink[9] lognormalMean 1
-par AerocomSys.dataLink[9] lognormalStdev 1
-par AerocomSys.dataLink[10] typename "\"DataLink\""
-par AerocomSys.dataLink[10] minCapacity 6000
-par AerocomSys.dataLink[10] maxCapacity 15000
-par AerocomSys.dataLink[10] generationMode 0
-par AerocomSys.dataLink[10] exponentialMean 1
-par AerocomSys.dataLink[10] lognormalMean 1
-par AerocomSys.dataLink[10] lognormalStdev 1
-par AerocomSys.dataLink[11] typename "\"DataLink\""
-par AerocomSys.dataLink[11] minCapacity 6000
-par AerocomSys.dataLink[11] maxCapacity 15000
-par AerocomSys.dataLink[11] generationMode 0
-par AerocomSys.dataLink[11] exponentialMean 1
-par AerocomSys.dataLink[11] lognormalMean 1
-par AerocomSys.dataLink[11] lognormalStdev 1
-par AerocomSys.dataLink[12] typename "\"DataLink\""
-par AerocomSys.dataLink[12] minCapacity 6000
-par AerocomSys.dataLink[12] maxCapacity 15000
-par AerocomSys.dataLink[12] generationMode 0
-par AerocomSys.dataLink[12] exponentialMean 1
-par AerocomSys.dataLink[12] lognormalMean 1
-par AerocomSys.dataLink[12] lognormalStdev 1
-par AerocomSys.dataLink[13] typename "\"DataLink\""
-par AerocomSys.dataLink[13] minCapacity 6000
-par AerocomSys.dataLink[13] maxCapacity 15000
-par AerocomSys.dataLink[13] generationMode 0
-par AerocomSys.dataLink[13] exponentialMean 1
-par AerocomSys.dataLink[13] lognormalMean 1
-par AerocomSys.dataLink[13] lognormalStdev 1
-par AerocomSys.dataLink[14] typename "\"DataLink\""
-par AerocomSys.dataLink[14] minCapacity 6000
-par AerocomSys.dataLink[14] maxCapacity 15000
-par AerocomSys.dataLink[14] generationMode 0
-par AerocomSys.dataLink[14] exponentialMean 1
-par AerocomSys.dataLink[14] lognormalMean 1
-par AerocomSys.dataLink[14] lognormalStdev 1
-par AerocomSys.dataLink[15] typename "\"DataLink\""
-par AerocomSys.dataLink[15] minCapacity 6000
-par AerocomSys.dataLink[15] maxCapacity 15000
-par AerocomSys.dataLink[15] generationMode 0
-par AerocomSys.dataLink[15] exponentialMean 1
-par AerocomSys.dataLink[15] lognormalMean 1
-par AerocomSys.dataLink[15] lognormalStdev 1
-par AerocomSys.dataLink[16] typename "\"DataLink\""
-par AerocomSys.dataLink[16] minCapacity 6000
-par AerocomSys.dataLink[16] maxCapacity 15000
-par AerocomSys.dataLink[16] generationMode 0
-par AerocomSys.dataLink[16] exponentialMean 1
-par AerocomSys.dataLink[16] lognormalMean 1
-par AerocomSys.dataLink[16] lognormalStdev 1
-par AerocomSys.dataLink[17] typename "\"DataLink\""
-par AerocomSys.dataLink[17] minCapacity 6000
-par AerocomSys.dataLink[17] maxCapacity 15000
-par AerocomSys.dataLink[17] generationMode 0
-par AerocomSys.dataLink[17] exponentialMean 1
-par AerocomSys.dataLink[17] lognormalMean 1
-par AerocomSys.dataLink[17] lognormalStdev 1
-par AerocomSys.dataLink[18] typename "\"DataLink\""
-par AerocomSys.dataLink[18] minCapacity 6000
-par AerocomSys.dataLink[18] maxCapacity 15000
-par AerocomSys.dataLink[18] generationMode 0
-par AerocomSys.dataLink[18] exponentialMean 1
-par AerocomSys.dataLink[18] lognormalMean 1
-par AerocomSys.dataLink[18] lognormalStdev 1
-par AerocomSys.dataLink[19] typename "\"DataLink\""
-par AerocomSys.dataLink[19] minCapacity 6000
-par AerocomSys.dataLink[19] maxCapacity 15000
-par AerocomSys.dataLink[19] generationMode 0
-par AerocomSys.dataLink[19] exponentialMean 1
-par AerocomSys.dataLink[19] lognormalMean 1
-par AerocomSys.dataLink[19] lognormalStdev 1
 par AerocomSys typename "\"AerocomSys\""
-par AerocomSys nDL 20
-par AerocomSys nAC 10
+par AerocomSys nDL 5
+par AerocomSys nAC 1
 

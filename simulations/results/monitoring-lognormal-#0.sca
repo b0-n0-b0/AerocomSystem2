@@ -1,0 +1,300 @@
+version 3
+run monitoring-lognormal-0-20221208-13:15:12-1888
+attr configname monitoring-lognormal
+attr datetime 20221208-13:15:12
+attr datetimef 20221208-131512
+attr experiment monitoring-lognormal
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 1888
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config description "aircraft in monitoring mode, new capacity selected with lognormal distrbution"
+config **.k 0.5
+config **.X 0.05
+config **.m 1
+config **.lognormalMean 1
+config **.lognormalStdev 1
+config **.generationMode 0
+config **.operationMode 0
+config network AerocomSys
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 100s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 5
+config **.nAC 5
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-0 0
+
+par AerocomSys.controlTower typename "\"ControlTower\""
+statistic AerocomSys.controlTower responseTimeStatistic:stats
+field count 20
+field mean 0.0095706679514201
+field stddev 0.0088577042454625
+field min 0.0069109274238012
+field max 0.047151774552497
+field sum 0.1914133590284
+field sqrsum 0.0033226732662284
+attr recordingmode stats
+attr source responseTime
+attr title "response time statistic"
+par AerocomSys.airCraft[0].packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft[0].packetGenerator size 100
+par AerocomSys.airCraft[0].packetGenerator k 0.5
+par AerocomSys.airCraft[0].linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft[0].linkSelector X 0.05
+par AerocomSys.airCraft[0].linkSelector m 1
+par AerocomSys.airCraft[0].linkSelector operationMode 0
+statistic AerocomSys.airCraft[0].linkSelector queueLengthStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source queueLength
+attr title "queue length statistic"
+statistic AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:stats
+field count 4
+field mean -0.23475869995275
+field stddev 0.37682998700097
+field min -0.725593248848
+field max 0.161005721894
+field sum -0.939034799811
+field sqrsum 0.64644910612347
+attr recordingmode stats
+attr source waitingTime
+attr title "waiting time statistic"
+statistic AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:stats
+field count 4
+field mean 0.0075617888748879
+field stddev 0.00060173952358582
+field min 0.0069109274238012
+field max 0.008336634707039
+field sum 0.030247155499552
+field sqrsum 0.00022980887531625
+attr recordingmode stats
+attr source serviceTime
+attr title "service time statistic"
+par AerocomSys.airCraft[0] typename "\"AirCraft\""
+par AerocomSys.airCraft[0] nDL 5
+par AerocomSys.airCraft[1].packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft[1].packetGenerator size 100
+par AerocomSys.airCraft[1].packetGenerator k 0.5
+par AerocomSys.airCraft[1].linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft[1].linkSelector X 0.05
+par AerocomSys.airCraft[1].linkSelector m 1
+par AerocomSys.airCraft[1].linkSelector operationMode 0
+statistic AerocomSys.airCraft[1].linkSelector queueLengthStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source queueLength
+attr title "queue length statistic"
+statistic AerocomSys.airCraft[1].linkSelector waitingTimeStatistic:stats
+field count 4
+field mean -0.28984278134975
+field stddev 0.34811251687789
+field min -0.703577691806
+field max 0.083531715091
+field sum -1.159371125399
+field sqrsum 0.69958232482342
+attr recordingmode stats
+attr source waitingTime
+attr title "waiting time statistic"
+statistic AerocomSys.airCraft[1].linkSelector serviceTimeStatistic:stats
+field count 4
+field mean 0.0075603065807292
+field stddev 0.00054976335594454
+field min 0.0069667726702136
+field max 0.0082785901276307
+field sum 0.030241226322917
+field sqrsum 0.00022953966162109
+attr recordingmode stats
+attr source serviceTime
+attr title "service time statistic"
+par AerocomSys.airCraft[1] typename "\"AirCraft\""
+par AerocomSys.airCraft[1] nDL 5
+par AerocomSys.airCraft[2].packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft[2].packetGenerator size 100
+par AerocomSys.airCraft[2].packetGenerator k 0.5
+par AerocomSys.airCraft[2].linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft[2].linkSelector X 0.05
+par AerocomSys.airCraft[2].linkSelector m 1
+par AerocomSys.airCraft[2].linkSelector operationMode 0
+statistic AerocomSys.airCraft[2].linkSelector queueLengthStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source queueLength
+attr title "queue length statistic"
+statistic AerocomSys.airCraft[2].linkSelector waitingTimeStatistic:stats
+field count 5
+field mean -0.2499200147806
+field stddev 0.33933714101866
+field min -0.642405317514
+field max 0.271800804884
+field sum -1.249600073903
+field sqrsum 0.77289885003855
+attr recordingmode stats
+attr source waitingTime
+attr title "waiting time statistic"
+statistic AerocomSys.airCraft[2].linkSelector serviceTimeStatistic:stats
+field count 5
+field mean 0.007648653888771
+field stddev 0.00046748499156212
+field min 0.0071608643161889
+field max 0.0081234511132006
+field sum 0.038243269443855
+field sqrsum 0.0002933837004204
+attr recordingmode stats
+attr source serviceTime
+attr title "service time statistic"
+par AerocomSys.airCraft[2] typename "\"AirCraft\""
+par AerocomSys.airCraft[2] nDL 5
+par AerocomSys.airCraft[3].packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft[3].packetGenerator size 100
+par AerocomSys.airCraft[3].packetGenerator k 0.5
+par AerocomSys.airCraft[3].linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft[3].linkSelector X 0.05
+par AerocomSys.airCraft[3].linkSelector m 1
+par AerocomSys.airCraft[3].linkSelector operationMode 0
+statistic AerocomSys.airCraft[3].linkSelector queueLengthStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source queueLength
+attr title "queue length statistic"
+statistic AerocomSys.airCraft[3].linkSelector waitingTimeStatistic:stats
+field count 3
+field mean -0.221383728863
+field stddev 0.38080704206651
+field min -0.577867127955
+field max 0.179801221122
+field sum -0.664151186589
+field sqrsum 0.43706027279075
+attr recordingmode stats
+attr source waitingTime
+attr title "waiting time statistic"
+statistic AerocomSys.airCraft[3].linkSelector serviceTimeStatistic:stats
+field count 3
+field mean 0.0076578366334656
+field stddev 0.00035193713154503
+field min 0.0072723807683398
+field max 0.0079620436070642
+field sum 0.022973509900397
+field sqrsum 0.00017617510520366
+attr recordingmode stats
+attr source serviceTime
+attr title "service time statistic"
+par AerocomSys.airCraft[3] typename "\"AirCraft\""
+par AerocomSys.airCraft[3] nDL 5
+par AerocomSys.airCraft[4].packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft[4].packetGenerator size 100
+par AerocomSys.airCraft[4].packetGenerator k 0.5
+par AerocomSys.airCraft[4].linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft[4].linkSelector X 0.05
+par AerocomSys.airCraft[4].linkSelector m 1
+par AerocomSys.airCraft[4].linkSelector operationMode 0
+statistic AerocomSys.airCraft[4].linkSelector queueLengthStatistic:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr recordingmode stats
+attr source queueLength
+attr title "queue length statistic"
+statistic AerocomSys.airCraft[4].linkSelector waitingTimeStatistic:stats
+field count 5
+field mean -0.1287740768256
+field stddev 0.40743569172613
+field min -0.698618314811
+field max 0.405965520419
+field sum -0.643870384128
+field sqrsum 0.74692918588082
+attr recordingmode stats
+attr source waitingTime
+attr title "waiting time statistic"
+statistic AerocomSys.airCraft[4].linkSelector serviceTimeStatistic:stats
+field count 5
+field mean 0.007686486516338
+field stddev 0.00071118513199612
+field min 0.0070003758534712
+field max 0.0086212310150094
+field sum 0.03843243258169
+field sqrsum 0.00029743351199712
+attr recordingmode stats
+attr source serviceTime
+attr title "service time statistic"
+par AerocomSys.airCraft[4] typename "\"AirCraft\""
+par AerocomSys.airCraft[4] nDL 5
+par AerocomSys.dataLink[0] typename "\"DataLink\""
+par AerocomSys.dataLink[0] minCapacity 6000
+par AerocomSys.dataLink[0] maxCapacity 15000
+par AerocomSys.dataLink[0] generationMode 0
+par AerocomSys.dataLink[0] exponentialMean 1
+par AerocomSys.dataLink[0] lognormalMean 1
+par AerocomSys.dataLink[0] lognormalStdev 1
+par AerocomSys.dataLink[1] typename "\"DataLink\""
+par AerocomSys.dataLink[1] minCapacity 6000
+par AerocomSys.dataLink[1] maxCapacity 15000
+par AerocomSys.dataLink[1] generationMode 0
+par AerocomSys.dataLink[1] exponentialMean 1
+par AerocomSys.dataLink[1] lognormalMean 1
+par AerocomSys.dataLink[1] lognormalStdev 1
+par AerocomSys.dataLink[2] typename "\"DataLink\""
+par AerocomSys.dataLink[2] minCapacity 6000
+par AerocomSys.dataLink[2] maxCapacity 15000
+par AerocomSys.dataLink[2] generationMode 0
+par AerocomSys.dataLink[2] exponentialMean 1
+par AerocomSys.dataLink[2] lognormalMean 1
+par AerocomSys.dataLink[2] lognormalStdev 1
+par AerocomSys.dataLink[3] typename "\"DataLink\""
+par AerocomSys.dataLink[3] minCapacity 6000
+par AerocomSys.dataLink[3] maxCapacity 15000
+par AerocomSys.dataLink[3] generationMode 0
+par AerocomSys.dataLink[3] exponentialMean 1
+par AerocomSys.dataLink[3] lognormalMean 1
+par AerocomSys.dataLink[3] lognormalStdev 1
+par AerocomSys.dataLink[4] typename "\"DataLink\""
+par AerocomSys.dataLink[4] minCapacity 6000
+par AerocomSys.dataLink[4] maxCapacity 15000
+par AerocomSys.dataLink[4] generationMode 0
+par AerocomSys.dataLink[4] exponentialMean 1
+par AerocomSys.dataLink[4] lognormalMean 1
+par AerocomSys.dataLink[4] lognormalStdev 1
+par AerocomSys typename "\"AerocomSys\""
+par AerocomSys nDL 5
+par AerocomSys nAC 5
+

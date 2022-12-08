@@ -1,0 +1,116 @@
+version 3
+run monitoring-exponential-0-20221208-13:28:48-13488
+attr configname monitoring-exponential
+attr datetime 20221208-13:28:48
+attr datetimef 20221208-132848
+attr experiment monitoring-exponential
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 13488
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config description "aircraft in monitoring mode, new capacity selected with exponential distrbution"
+config **.k 0.1
+config **.X 0.05
+config **.m 1
+config **.exponentialMean 1
+config **.generationMode 1
+config **.operationMode 0
+config network AerocomSys
+config repeat 100
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 1s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 5
+config **.nAC 5
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-0 0
+
+vector 0 AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 1 AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 2 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+vector 3 AerocomSys.airCraft[1].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 4 AerocomSys.airCraft[1].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 5 AerocomSys.airCraft[4].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 6 AerocomSys.airCraft[4].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 7 AerocomSys.airCraft[2].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 8 AerocomSys.airCraft[2].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 9 AerocomSys.airCraft[3].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 10 AerocomSys.airCraft[3].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+0	8	0.05488135023	-0.94511864977
+0	36	0.140675912215	-0.859324087785
+1	8	0.05488135023	0.0069832610796798
+1	36	0.140675912215	0.0070323252764398
+2	10	0.05488135023	0.0069832610796798
+2	14	0.059284461639	0.0069857624585079
+2	18	0.060276337038	0.0069863261837652
+2	22	0.071518936497	0.0069927222002508
+2	26	0.084426574409	0.0070000799286192
+2	30	0.113772779377	0.007016865874669
+2	34	0.113884416176	0.0070169298843097
+2	38	0.140675912215	0.0070323252764398
+2	42	0.145001510764	0.0070348172629349
+2	46	0.146782944049	0.0070358440639542
+3	12	0.059284461639	-0.940715538361
+3	28	0.113772779377	-0.886227220623
+4	12	0.059284461639	0.0069857624585079
+4	28	0.113772779377	0.007016865874669
+5	16	0.060276337038	-0.939723662962
+5	40	0.145001510764	-0.854998489236
+6	16	0.060276337038	0.0069863261837652
+6	40	0.145001510764	0.0070348172629349
+7	20	0.071518936497	-0.928481063503
+7	32	0.113884416176	-0.886115583824
+7	48	0.152322586998	-0.847677413002
+8	20	0.071518936497	0.0069927222002508
+8	32	0.113884416176	0.0070169298843097
+8	48	0.152322586998	0.0070390389770654
+9	24	0.084426574409	-0.915573425591
+9	44	0.146782944049	-0.853217055951
+10	24	0.084426574409	0.0070000799286192
+10	44	0.146782944049	0.0070358440639542
+
