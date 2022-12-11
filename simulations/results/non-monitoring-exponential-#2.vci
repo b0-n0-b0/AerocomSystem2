@@ -1,5 +1,5 @@
-file 1646 1670503029                                            
-version 3
+file 1593 1670766183                                            
+version 2
 run non-monitoring-exponential-2-20221208-13:37:03-17744
 attr configname non-monitoring-exponential
 attr datetime 20221208-13:37:03
@@ -40,15 +40,14 @@ vector 0 AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:vector ETV
 attr recordingmode vector
 attr source waitingTime
 attr title "waiting time statistic"
+0	1481 35 5 5 0.714288117364 0.714288117364 1 -0.285711882636 -0.285711882636 -0.285711882636 0.081631279879407
 vector 1 AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:vector ETV
 attr recordingmode vector
 attr source serviceTime
 attr title "service time statistic"
+1	1516 38 5 5 0.714288117364 0.714288117364 1 0.0075472167544876 0.0075472167544876 0.0075472167544876 5.6960480739218e-05
 vector 2 AerocomSys.controlTower responseTimeStatistic:vector ETV
 attr recordingmode vector
 attr source responseTime
 attr title "response time statistic"
-0	1530 36 5 5 0.714288117364 0.714288117364 1 -0.285711882636 -0.285711882636 -0.285711882636 0.081631279879407
-1	1566 39 5 5 0.714288117364 0.714288117364 1 0.0075472167544876 0.0075472167544876 0.0075472167544876 5.6960480739218e-05
-2	1605 39 7 7 0.714288117364 0.714288117364 1 0.0075472167544876 0.0075472167544876 0.0075472167544876 5.6960480739218e-05
-
+2	1554 39 7 7 0.714288117364 0.714288117364 1 0.0075472167544876 0.0075472167544876 0.0075472167544876 5.6960480739218e-05

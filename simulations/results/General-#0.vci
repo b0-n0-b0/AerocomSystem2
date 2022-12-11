@@ -1,9 +1,9 @@
-file 1577 1670330835                                            
-version 2
-run General-0-20221206-11:33:36-5896
+file 4071 1670766408                                            
+version 3
+run General-0-20221211-14:46:22-7830
 attr configname General
-attr datetime 20221206-11:33:36
-attr datetimef 20221206-113336
+attr datetime 20221211-14:46:22
+attr datetimef 20221211-144622
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -11,23 +11,39 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network AerocomSys
-attr processid 5896
+attr processid 7830
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
 config network AerocomSys
+config repeat 100
 config num-rngs 3
-config sim-time-limit 100s
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 400s
 config rng-class omnetpp::cMersenneTwister
+config **.nDL 5
+config **.nAC 1
 config **.PacketGenerator.rng-0 0
 config **.LinkSelector.rng-1 1
 config **.DataLink[*].rng-0 0
-config **.ControlTower.responseTime.result-recording-modes +histogram
 
-vector 0 AerocomSys.controlTower responseTimeStatistic:vector ETV
+vector 0 AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 1 AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 2 AerocomSys.controlTower responseTimeStatistic:vector ETV
 attr recordingmode vector
 attr source responseTime
 attr title "response time statistic"
-0	873 704 80 176 5 8.950107153505 30 0 2.881726016058 19.62328611524 36.915217240702
+0	1222 755 23 159 5 17.911707338177 33 0 4.721277994105 41.031269840449 139.98936763365
+1	1977 1086 23 159 5 17.911707338177 33 0.008052441557151 0.010007294833883 0.2865949890222 0.0024969344266758
+2	3063 1007 31 157 5 17.891488939057 32 0.0080601305323045 4.7300407548877 41.309122479064 140.68732954674
+
