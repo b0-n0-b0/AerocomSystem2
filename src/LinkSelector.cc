@@ -17,6 +17,7 @@ void LinkSelector::initialize(int stage)
         //set up of the needed messages
         malusExpire = new cMessage("malusExpire");
         monitoringExpire = new cMessage("monitoringExpire");
+        ServiceTimeExpire= new cMessage("ServiceTimeExpire");
         nDL = getAncestorPar("nDL");
         //0 -> monitored, 1 -> non-monitored
         operationMode = par("operationMode");
@@ -46,6 +47,10 @@ void LinkSelector::handleMessage(cMessage *msg)
         // end of the malus, we can send messages
         if(strcmp(msg->getName(),"malusExpire") == 0){
             isScanning = false;
+            serviceTimePckt();
+        }
+        if(strcmp(msg->getName(),"ServiceTimeExpire") == 0){
+            serving = false;
             sendPacket();
         }
     }
@@ -81,25 +86,34 @@ void LinkSelector::getIndexBestCapacity(){
     EV<<"chosen DL = "<<chosenDL<<"\n";
 }
 
+void LinkSelector::serviceTimePckt(){
+    // if we are not scanning and the queue has packets in it, we send them
+    if(!queue.empty() && isScanning == false){
+
+         AirCraftPacket* packet = queue.front();
+         double capacity = getIndexCapacity(chosenDL);
+         packet->setServiceTime(packet->getSize()/capacity);
+         emit(serviceTimeSignal, packet->getServiceTime());
+         scheduleAt(simTime() + packet->getServiceTime(), ServiceTimeExpire);
+         serving = true;
+     }
+
+}
+
 
 void LinkSelector::sendPacket(){
-    // if we are not scanning and the queue has packets in it, we send them
-    while(!queue.empty() && isScanning == false){
+
         AirCraftPacket* packet = queue.front();
         queue.pop();
-        // signal for the waiting time
         double startWaitingTime = waitingTimeQueue.front();
         waitingTimeQueue.pop();
         emit(waitingTimeSignal, (simTime().dbl() - startWaitingTime));
         // signal for the service time
-        double capacity = getIndexCapacity(chosenDL);
-        packet->setServiceTime(packet->getSize()/capacity);
-        emit(serviceTimeSignal, packet->getServiceTime());
-        //packet sent
         send(packet,"LS_out", chosenDL);
 
-    }
-}
+        serviceTimePckt(); //try to send another packet
+ }
+
 
 void LinkSelector::handlePcktArrival(AirCraftPacket* msg){
     // save message in queue
@@ -109,7 +123,9 @@ void LinkSelector::handlePcktArrival(AirCraftPacket* msg){
         emit(queueLengthSignal, queue.size());
         //queue used to memorize the instant when a packet enters the queue
         waitingTimeQueue.push(simTime().dbl());
-        sendPacket();
+        if(!serving) {  //if I'm not transmitting another packet
+           serviceTimePckt();
+         }
     }else{
         delete(msg);
     }
