@@ -25,8 +25,9 @@ class LinkSelector : public cSimpleModule
     int nDL;
     int operationMode;
     double X;
-    int m;
+    double m;
     bool isScanning = true;
+    bool serving = false;
     //signals
     simsignal_t serviceTimeSignal = registerSignal("serviceTime");
     simsignal_t waitingTimeSignal = registerSignal("waitingTime");
