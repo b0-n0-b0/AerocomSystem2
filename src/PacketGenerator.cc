@@ -6,7 +6,7 @@ Define_Module(PacketGenerator);
 void PacketGenerator::initialize()
 {
     k = par("k");
-    generationTime = uniform(0,k,0);
+    generationTime = exponential(k,0);
     packetToLs = new cMessage("packetToLs");
     //start  timer to generate the first packet
     scheduleAt(simTime() + generationTime, packetToLs );
@@ -28,7 +28,7 @@ void PacketGenerator::generateNewPacket(cMessage *msg)
     packet->setGenTime(simTime().dbl());
     packet->setSize(par("size"));
     send(packet, "PG_out");
-    generationTime = uniform(0,k,0);
+    generationTime = exponential(k,0);
     scheduleAt(simTime() + generationTime, msg);
     EV<< "packet generated";
 

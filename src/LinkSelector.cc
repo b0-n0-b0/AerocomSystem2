@@ -25,6 +25,7 @@ void LinkSelector::initialize(int stage)
         if(operationMode == 0 && nDL > 0){
             m = par("m");
             X = par("X");
+            X = X + + nDL * 0.0002;
             monitorDl();
         }
         else if(nDL > 0){
