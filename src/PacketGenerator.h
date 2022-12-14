@@ -9,9 +9,9 @@ class PacketGenerator : public cSimpleModule
 {
     private:
     // packet generation period
-    double k;
+    double kMean;
     cMessage *packetToLs;
-    simtime_t generationTime;
+    simtime_t k;
   protected:
     virtual void initialize() override;
     virtual void handleMessage(cMessage *msg) override;

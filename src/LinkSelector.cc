@@ -1,5 +1,4 @@
-#include "LinkSelector.h"
-#include "DataLink.h"
+#include "LinkSelector.h"#include "DataLink.h"
 
 
 // Sub Module which manages a FIFO queue, which is responsible for sending packets. In the non monitored operation mode
@@ -89,16 +88,21 @@ void LinkSelector::getIndexBestCapacity(){
 
 void LinkSelector::serviceTimePckt(){
     // if we are not scanning and the queue has packets in it, we send them
-    if(!queue.empty() && isScanning == false){
-
+    if(!queue.empty() && isScanning == false && serving == false){
          AirCraftPacket* packet = queue.front();
+         //signal for the service time
          double capacity = getIndexCapacity(chosenDL);
          packet->setServiceTime(packet->getSize()/capacity);
          emit(serviceTimeSignal, packet->getServiceTime());
+         //signal for the queueing time
+         double startWaitingTime = waitingTimeQueue.front();
+         waitingTimeQueue.pop();
+         emit(waitingTimeSignal, (simTime().dbl() - startWaitingTime));
+         // simulation of the time to send a packet
          scheduleAt(simTime() + packet->getServiceTime(), ServiceTimeExpire);
+         EV <<"service time: " <<packet->getServiceTime();
          serving = true;
      }
-
 }
 
 
@@ -106,13 +110,10 @@ void LinkSelector::sendPacket(){
 
         AirCraftPacket* packet = queue.front();
         queue.pop();
-        double startWaitingTime = waitingTimeQueue.front();
-        waitingTimeQueue.pop();
-        emit(waitingTimeSignal, (simTime().dbl() - startWaitingTime));
-        // signal for the service time
         send(packet,"LS_out", chosenDL);
-
-        serviceTimePckt(); //try to send another packet
+        EV <<"packet sent" ;
+        //try to send another packet
+        serviceTimePckt();
  }
 
 
@@ -124,7 +125,8 @@ void LinkSelector::handlePcktArrival(AirCraftPacket* msg){
         emit(queueLengthSignal, queue.size());
         //queue used to memorize the instant when a packet enters the queue
         waitingTimeQueue.push(simTime().dbl());
-        if(!serving) {  //if I'm not transmitting another packet
+        //if I'm not transmitting another packet
+        if(!serving) {
            serviceTimePckt();
          }
     }else{
@@ -139,7 +141,6 @@ void LinkSelector::handleMalus(){
 void LinkSelector::monitorDl(){
     isScanning = true;
     scheduleAt(simTime() + m, monitoringExpire);
-
     getIndexBestCapacity();
     handleMalus();
 }
