@@ -16,6 +16,7 @@ class LinkSelector : public cSimpleModule
     virtual void handleMessage(cMessage *msg) override;
     cMessage* malusExpire;
     cMessage* monitoringExpire;
+    cMessage* ServiceTimeExpire;
 
   private:
     std::queue<AirCraftPacket*> queue;
@@ -29,7 +30,7 @@ class LinkSelector : public cSimpleModule
     //signals
     simsignal_t serviceTimeSignal = registerSignal("serviceTime");
     simsignal_t waitingTimeSignal = registerSignal("waitingTime");
-    simsignal_t queueLengthSignal = registerSignal("queueLenght");
+    simsignal_t queueLengthSignal = registerSignal("queueLength");
 
     void getIndexBestCapacity();
     double getIndexCapacity(int i);
@@ -37,6 +38,7 @@ class LinkSelector : public cSimpleModule
     void handlePcktArrival(AirCraftPacket* msg);
     void handleMalus();
     void monitorDl();
+    void serviceTimePckt();
 };
 
 #endif
