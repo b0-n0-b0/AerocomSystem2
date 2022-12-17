@@ -9,7 +9,7 @@ void PacketGenerator::initialize()
     k = exponential(kMean,0);
     packetToLs = new cMessage("packetToLs");
     //start  timer to generate the first packet
-    scheduleAt(simTime() + k, packetToLs );
+    scheduleAt(simTime() + k, packetToLs);
 }
 
 void PacketGenerator::handleMessage(cMessage *msg)

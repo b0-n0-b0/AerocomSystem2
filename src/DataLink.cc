@@ -4,16 +4,13 @@ Define_Module(DataLink);
 
 void DataLink::initialize()
 {
-    //TODO: SIGNALS DEFINITION
-
-    //
-        startVariation = new cMessage("startVariation");
-        minCapacity = par("minCapacity");
-        maxCapacity = par("maxCapacity");
-        startCapacity = uniform(minCapacity, maxCapacity,2);
-        nextCapacity = uniform(minCapacity, maxCapacity,2);
-        generate_t();
-        scheduleAt(simTime() + t, startVariation);
+    startVariation = new cMessage("startVariation");
+    minCapacity = par("minCapacity");
+    maxCapacity = par("maxCapacity");
+    startCapacity = uniform(minCapacity, maxCapacity,2);
+    nextCapacity = uniform(minCapacity, maxCapacity,2);
+    generate_t();
+    scheduleAt(simTime() + t, startVariation);
 
 }
 

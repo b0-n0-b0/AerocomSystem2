@@ -12,11 +12,12 @@ class LinkSelector : public cSimpleModule
   protected:
 //    virtual void initialize() override;
     virtual void initialize(int stage) override;
+    virtual void finish() override;
     virtual int numInitStages() const { return 2; };
     virtual void handleMessage(cMessage *msg) override;
     cMessage* malusExpire;
     cMessage* monitoringExpire;
-    cMessage* ServiceTimeExpire;
+    cMessage* serviceTimeExpire;
 
   private:
     std::queue<AirCraftPacket*> queue;
@@ -28,6 +29,7 @@ class LinkSelector : public cSimpleModule
     double m;
     bool isScanning = true;
     bool serving = false;
+    double nextMonitoringTime;
     //signals
     simsignal_t serviceTimeSignal = registerSignal("serviceTime");
     simsignal_t waitingTimeSignal = registerSignal("waitingTime");

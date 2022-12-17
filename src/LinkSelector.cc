@@ -1,4 +1,5 @@
-#include "LinkSelector.h"#include "DataLink.h"
+#include "LinkSelector.h"
+#include "DataLink.h"
 
 
 // Sub Module which manages a FIFO queue, which is responsible for sending packets. In the non monitored operation mode
@@ -6,7 +7,6 @@
 // all the available data links every m seconds and selects the one with the highest capacity. In the monitored mode there’s
 // also a malus due to the monitoring delay X. After the delay the operations are handled as usual.
 
-// TODO: test and debug all the signals
 Define_Module(LinkSelector);
 
 void LinkSelector::initialize(int stage)
@@ -16,7 +16,7 @@ void LinkSelector::initialize(int stage)
         //set up of the needed messages
         malusExpire = new cMessage("malusExpire");
         monitoringExpire = new cMessage("monitoringExpire");
-        ServiceTimeExpire= new cMessage("ServiceTimeExpire");
+        serviceTimeExpire= new cMessage("serviceTimeExpire");
         nDL = getAncestorPar("nDL");
         //0 -> monitored, 1 -> non-monitored
         operationMode = par("operationMode");
@@ -49,7 +49,7 @@ void LinkSelector::handleMessage(cMessage *msg)
             isScanning = false;
             serviceTimePckt();
         }
-        if(strcmp(msg->getName(),"ServiceTimeExpire") == 0){
+        if(strcmp(msg->getName(),"serviceTimeExpire") == 0){
             serving = false;
             sendPacket();
         }
@@ -89,31 +89,35 @@ void LinkSelector::getIndexBestCapacity(){
 void LinkSelector::serviceTimePckt(){
     // if we are not scanning and the queue has packets in it, we send them
     if(!queue.empty() && isScanning == false && serving == false){
-         AirCraftPacket* packet = queue.front();
+        serving = true;
          //signal for the service time
          double capacity = getIndexCapacity(chosenDL);
-         packet->setServiceTime(packet->getSize()/capacity);
-         emit(serviceTimeSignal, packet->getServiceTime());
-         //signal for the queueing time
-         double startWaitingTime = waitingTimeQueue.front();
-         waitingTimeQueue.pop();
-         emit(waitingTimeSignal, (simTime().dbl() - startWaitingTime));
-         // simulation of the time to send a packet
-         scheduleAt(simTime() + packet->getServiceTime(), ServiceTimeExpire);
-         EV <<"service time: " <<packet->getServiceTime();
-         serving = true;
+         double serviceTime = queue.front()->getSize()/capacity;
+         if(simTime().dbl() + serviceTime < nextMonitoringTime){
+             queue.front()->setServiceTime(serviceTime);
+             emit(serviceTimeSignal, serviceTime);
+             //signal for the queueing time
+             double startWaitingTime = waitingTimeQueue.front();
+             waitingTimeQueue.pop();
+             emit(waitingTimeSignal, (simTime().dbl() - startWaitingTime));
+             // simulation of the time to send a packet
+             scheduleAt(simTime() + serviceTime, serviceTimeExpire);
+             EV <<"service time: " <<serviceTime << '\n';
+         }else{
+             EV << "service time: "<< serviceTime << " nextMonitoringTime: " << nextMonitoringTime - simTime().dbl()<<'\n';
+         }
      }
 }
 
-
 void LinkSelector::sendPacket(){
-
+    if(!queue.empty()){
         AirCraftPacket* packet = queue.front();
         queue.pop();
         send(packet,"LS_out", chosenDL);
-        EV <<"packet sent" ;
+        EV <<"packet sent \n";
         //try to send another packet
         serviceTimePckt();
+    }
  }
 
 
@@ -123,6 +127,7 @@ void LinkSelector::handlePcktArrival(AirCraftPacket* msg){
         // signal for the queue length
         queue.push(msg);
         emit(queueLengthSignal, queue.size());
+        EV<< "queue length = "<<queue.size()<<"\n";
         //queue used to memorize the instant when a packet enters the queue
         waitingTimeQueue.push(simTime().dbl());
         //if I'm not transmitting another packet
@@ -140,7 +145,17 @@ void LinkSelector::handleMalus(){
 
 void LinkSelector::monitorDl(){
     isScanning = true;
-    scheduleAt(simTime() + m, monitoringExpire);
+    nextMonitoringTime = simTime().dbl() + m;
+    scheduleAt(nextMonitoringTime, monitoringExpire);
     getIndexBestCapacity();
     handleMalus();
+}
+
+void LinkSelector::finish(){
+    while(!queue.empty()){
+        AirCraftPacket* packet = queue.front();
+        queue.pop();
+        delete(packet);
+    }
+    delete(serviceTimeExpire);
 }

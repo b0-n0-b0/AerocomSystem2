@@ -13,6 +13,6 @@ void ControlTower::handleMessage(cMessage *msg)
     double responseTime = msg->getArrivalTime().dbl() - packet->getGenTime() + packet->getServiceTime();
 //    EV << responseTime;
     emit(responseTimeSignal, responseTime);
-    delete(msg);
+    delete(packet);
 //    EV<< check_and_cast<AirCraftPacket*>(msg)->getGenTime();
 }
