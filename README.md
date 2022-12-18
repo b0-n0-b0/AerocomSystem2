@@ -31,8 +31,8 @@ Anno accademico 2022/2023
 1. **Introduction**
     1. Objectives
 2. **Model**
-    2. Components 
-    3. Assumptions
+    2.1. Components 
+    3.1. Assumptions
 3. **Model Validation**
 4. **Warm-up Analysis**
 5. **Validation Experiments**
