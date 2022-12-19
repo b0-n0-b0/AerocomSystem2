@@ -89,11 +89,12 @@ void LinkSelector::getIndexBestCapacity(){
 void LinkSelector::serviceTimePckt(){
     // if we are not scanning and the queue has packets in it, we send them
     if(!queue.empty() && isScanning == false && serving == false){
-        serving = true;
          //signal for the service time
          double capacity = getIndexCapacity(chosenDL);
          double serviceTime = queue.front()->getSize()/capacity;
+         // check if the time is enough to send the packet
          if(simTime().dbl() + serviceTime < nextMonitoringTime){
+             serving = true;
              queue.front()->setServiceTime(serviceTime);
              emit(serviceTimeSignal, serviceTime);
              //signal for the queueing time
