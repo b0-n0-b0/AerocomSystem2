@@ -93,7 +93,7 @@ void LinkSelector::serviceTimePckt(){
          double capacity = getIndexCapacity(chosenDL);
          double serviceTime = queue.front()->getSize()/capacity;
          // check if the time is enough to send the packet
-         if(simTime().dbl() + serviceTime < nextMonitoringTime){
+         if((simTime().dbl() + serviceTime < nextMonitoringTime && operationMode==0) || operationMode==1){
              serving = true;
              queue.front()->setServiceTime(serviceTime);
              emit(serviceTimeSignal, serviceTime);
@@ -158,5 +158,5 @@ void LinkSelector::finish(){
         queue.pop();
         delete(packet);
     }
-    delete(serviceTimeExpire);
+    //delete(serviceTimeExpire);
 }
