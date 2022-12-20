@@ -1,0 +1,61 @@
+file 796524 1671547327                                          
+version 3
+run non-monitoring-exponential-0-20221220-15:42:07-7073
+attr configname non-monitoring-exponential
+attr datetime 20221220-15:42:07
+attr datetimef 20221220-154207
+attr experiment non-monitoring-exponential
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 7073
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config description "aircraft in non-monitoring mode, new capacity selected with exponential distrbution"
+config **.kMean 0.05
+config **.exponentialMean 1
+config **.generationMode 1
+config **.operationMode 1
+config network AerocomSys
+config repeat 1
+config seed-set 0
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 300s
+config warmup-period 10s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 5
+config **.nAC 1
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-0 0
+
+vector 0 AerocomSys.airCraft[0].linkSelector queueLengthStatistic:vector ETV
+attr recordingmode vector
+attr source queueLength
+attr title "queue length statistic"
+vector 1 AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 2 AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 3 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+0	1690 148367 1058 30750 10.005245567619 299.97965892921 5647 1 4 6924 9850
+1	150057 241337 1058 30754 10.005245567619 299.989904203181 5647 0.0067020317346511 0.016578468480223 56.065037485118 0.58563261364933
+2	391394 167013 1058 30754 10.005245567619 299.989904203181 5647 0 0.042311521417986 7.5349359078895 0.085842372480838
+3	558407 238116 1061 30759 10.014837497423 299.99838026803 5647 0.013415260414029 0.070941567757545 119.66501087816 2.7656795365611
+
