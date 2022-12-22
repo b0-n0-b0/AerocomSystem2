@@ -10,7 +10,7 @@ void ControlTower::initialize()
 void ControlTower::handleMessage(cMessage *msg)
 {
     AirCraftPacket* packet = check_and_cast<AirCraftPacket*>(msg);
-    double responseTime = msg->getArrivalTime().dbl() - packet->getGenTime() + packet->getServiceTime();
+    double responseTime = msg->getArrivalTime().dbl() - packet->getGenTime();
 //    EV << responseTime;
     emit(responseTimeSignal, responseTime);
     delete(packet);

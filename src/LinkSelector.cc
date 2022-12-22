@@ -4,7 +4,7 @@
 
 // Sub Module which manages a FIFO queue, which is responsible for sending packets. In the non monitored operation mode
 // the DL is chosen once for all the simulation  at the start. In the monitored one the link selector scans periodically
-// all the available data links every m seconds and selects the one with the highest capacity. In the monitored mode there’s
+// all the available data links every m seconds and selects the one with the highest capacity. In the monitored mode there's
 // also a malus due to the monitoring delay X. After the delay the operations are handled as usual.
 
 Define_Module(LinkSelector);
@@ -25,7 +25,7 @@ void LinkSelector::initialize(int stage)
         if(operationMode == 0 && nDL > 0){
             m = par("m");
             X = par("X");
-            X = X + + nDL * 0.0002;
+            X = X + nDL * 0.0002;
             monitorDl();
         }
         else if(nDL > 0){
@@ -95,7 +95,6 @@ void LinkSelector::serviceTimePckt(){
          // check if the time is enough to send the packet
          if((simTime().dbl() + serviceTime < nextMonitoringTime && operationMode==0) || operationMode==1){
              serving = true;
-             queue.front()->setServiceTime(serviceTime);
              emit(serviceTimeSignal, serviceTime);
              //signal for the queueing time
              double startWaitingTime = waitingTimeQueue.front();
@@ -158,5 +157,10 @@ void LinkSelector::finish(){
         queue.pop();
         delete(packet);
     }
-    //delete(serviceTimeExpire);
+    cancelEvent(serviceTimeExpire);
+    cancelEvent(malusExpire);
+    cancelEvent(monitoringExpire);
+    delete(serviceTimeExpire);
+    delete(malusExpire);
+    delete(monitoringExpire);
 }
