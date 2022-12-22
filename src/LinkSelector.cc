@@ -163,4 +163,6 @@ void LinkSelector::finish(){
     delete(serviceTimeExpire);
     delete(malusExpire);
     delete(monitoringExpire);
+    delete(queue);
+    delete(waitingTimeQueue);
 }
