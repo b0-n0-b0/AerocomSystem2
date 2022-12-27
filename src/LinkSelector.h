@@ -15,8 +15,8 @@ class LinkSelector : public cSimpleModule
     virtual void finish() override;
     virtual int numInitStages() const { return 2; };
     virtual void handleMessage(cMessage *msg) override;
-    cMessage* malusExpire;
-    cMessage* monitoringExpire;
+//    cMessage* malusExpire;
+//    cMessage* monitoringExpire;
     cMessage* serviceTimeExpire;
 
   private:
@@ -26,10 +26,10 @@ class LinkSelector : public cSimpleModule
     int nDL;
     int operationMode;
     double X;
-    double m;
-    bool isScanning = true;
+//    double m;
+//    bool isScanning = true;
     bool serving = false;
-    double nextMonitoringTime;
+//    double nextMonitoringTime;
     //signals
     simsignal_t serviceTimeSignal = registerSignal("serviceTime");
     simsignal_t waitingTimeSignal = registerSignal("waitingTime");
@@ -39,8 +39,8 @@ class LinkSelector : public cSimpleModule
     double getIndexCapacity(int i);
     void sendPacket();
     void handlePcktArrival(AirCraftPacket* msg);
-    void handleMalus();
-    void monitorDl();
+//    void handleMalus();
+//    void monitorDl();
     void serviceTimePckt();
 };
 
