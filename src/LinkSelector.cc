@@ -14,8 +14,8 @@ void LinkSelector::initialize(int stage)
     //two stage inizialization to avoid requests sent to a DL before the inizialization of the capacity
     if(stage == 0){
         //set up of the needed messages
-        malusExpire = new cMessage("malusExpire");
-        monitoringExpire = new cMessage("monitoringExpire");
+//        malusExpire = new cMessage("malusExpire");
+//        monitoringExpire = new cMessage("monitoringExpire");
         serviceTimeExpire= new cMessage("serviceTimeExpire");
         nDL = getAncestorPar("nDL");
         //0 -> monitored, 1 -> non-monitored
@@ -23,14 +23,15 @@ void LinkSelector::initialize(int stage)
     }else if (stage == 1){
         // set up of the variables needed for the monitoring
         if(operationMode == 0 && nDL > 0){
-            m = par("m");
+//            m = par("m");
             X = par("X");
-            X = X + nDL * 0.0002;
-            monitorDl();
+//            X = X + nDL * 0.0002;
+//            monitorDl();
+//            getIndexBestCapacity();
         }
         else if(nDL > 0){
             chosenDL = intrand(nDL,1);
-            isScanning = false;
+//            isScanning = false;
             EV<<"chosen DL = "<<chosenDL<<"\n";
         }
     }
@@ -41,14 +42,14 @@ void LinkSelector::handleMessage(cMessage *msg)
 
     if(msg->isSelfMessage()){
         // restart of the monitoring
-        if(strcmp(msg->getName(),"monitoringExpire") == 0){
-            monitorDl();
-        }
+//        if(strcmp(msg->getName(),"monitoringExpire") == 0){
+//            monitorDl();
+//        }
         // end of the malus, we can send messages
-        if(strcmp(msg->getName(),"malusExpire") == 0){
-            isScanning = false;
-            serviceTimePckt();
-        }
+//        if(strcmp(msg->getName(),"malusExpire") == 0){
+//            isScanning = false;
+//            serviceTimePckt();
+//        }
         if(strcmp(msg->getName(),"serviceTimeExpire") == 0){
             serving = false;
             sendPacket();
@@ -88,24 +89,30 @@ void LinkSelector::getIndexBestCapacity(){
 
 void LinkSelector::serviceTimePckt(){
     // if we are not scanning and the queue has packets in it, we send them
-    if(!queue.empty() && isScanning == false && serving == false){
+    if(!queue.empty() && !serving){//&& isScanning == false && serving == false){
          //signal for the service time
+        // monitoring
+        if(operationMode == 0)
+             getIndexBestCapacity();
+
          double capacity = getIndexCapacity(chosenDL);
+         // X% malus if monitoring (X == 0.5 -> 50%)
+         if(operationMode == 0)
+             capacity -= capacity*X;
+
          double serviceTime = queue.front()->getSize()/capacity;
          // check if the time is enough to send the packet
-         if((simTime().dbl() + serviceTime < nextMonitoringTime && operationMode==0) || operationMode==1){
-             serving = true;
-             emit(serviceTimeSignal, serviceTime);
-             //signal for the queueing time
-             double startWaitingTime = waitingTimeQueue.front();
-             waitingTimeQueue.pop();
-             emit(waitingTimeSignal, (simTime().dbl() - startWaitingTime));
-             // simulation of the time to send a packet
-             scheduleAt(simTime() + serviceTime, serviceTimeExpire);
-             EV <<"service time: " <<serviceTime << '\n';
-         }else{
-             EV << "service time: "<< serviceTime << " nextMonitoringTime: " << nextMonitoringTime - simTime().dbl()<<'\n';
-         }
+//         if((simTime().dbl() + serviceTime < nextMonitoringTime && operationMode==0) || operationMode==1){
+         serving = true;
+         emit(serviceTimeSignal, serviceTime);
+         //signal for the queueing time
+         double startWaitingTime = waitingTimeQueue.front();
+         waitingTimeQueue.pop();
+         emit(waitingTimeSignal, (simTime().dbl() - startWaitingTime));
+         // simulation of the time to send a packet
+         scheduleAt(simTime() + serviceTime, serviceTimeExpire);
+//         EV <<"service time: " <<serviceTime << '\n';
+//         }
      }
 }
 
@@ -127,7 +134,7 @@ void LinkSelector::handlePcktArrival(AirCraftPacket* msg){
         // signal for the queue length
         queue.push(msg);
         emit(queueLengthSignal, queue.size());
-        EV<< "queue length = "<<queue.size()<<"\n";
+//        EV<< "queue length = "<<queue.size()<<"\n";
         //queue used to memorize the instant when a packet enters the queue
         waitingTimeQueue.push(simTime().dbl());
         //if I'm not transmitting another packet
@@ -139,17 +146,17 @@ void LinkSelector::handlePcktArrival(AirCraftPacket* msg){
     }
 }
 
-void LinkSelector::handleMalus(){
-    scheduleAt(simTime() + X, malusExpire);
-}
+//void LinkSelector::handleMalus(){
+//    scheduleAt(simTime() + X, malusExpire);
+//}
 
-void LinkSelector::monitorDl(){
-    isScanning = true;
-    nextMonitoringTime = simTime().dbl() + m;
-    scheduleAt(nextMonitoringTime, monitoringExpire);
-    getIndexBestCapacity();
-    handleMalus();
-}
+//void LinkSelector::monitorDl(){
+//    isScanning = true;
+//    nextMonitoringTime = simTime().dbl() + m;
+//    scheduleAt(nextMonitoringTime, monitoringExpire);
+//    getIndexBestCapacity();
+//    handleMalus();
+//}
 
 void LinkSelector::finish(){
     while(!queue.empty()){
@@ -158,11 +165,9 @@ void LinkSelector::finish(){
         delete(packet);
     }
     cancelEvent(serviceTimeExpire);
-    cancelEvent(malusExpire);
-    cancelEvent(monitoringExpire);
-    delete(serviceTimeExpire);
-    delete(malusExpire);
+//    cancelEvent(malusExpire);
+//    cancelEvent(monitoringExpire);
+//    delete(serviceTimeExpire);
+//    delete(malusExpire);
     delete(monitoringExpire);
-    delete(queue);
-    delete(waitingTimeQueue);
 }
