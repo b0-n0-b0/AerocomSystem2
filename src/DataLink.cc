@@ -41,10 +41,8 @@ void DataLink::generate_t(){
     double lognormalStdev = par("lognormalStdev");
     double exponentialMean = par("exponentialMean");
     if(generationMode == 0){
-        // TODO: which values for mean, stdev and rng?
         t = lognormal(lognormalMean, lognormalStdev,2);
     }else if (generationMode == 1){
-        // TODO: which values for mean and rng?
         t = exponential(exponentialMean,2);
     }
     // I save the instant in which I generated the t, this instant will be used do calculate the actual capacity
@@ -53,15 +51,9 @@ void DataLink::generate_t(){
 
 double DataLink::getActualCapacity(){
     //this function will be called by the LinkSelector to retrieve the capacity at the time of the call
-    //random debug values
-//    t = 20.5;
-//    startCapacity = 2000;
-//    nextCapacity = 1000;
     double computationTime = simTime().dbl();
     double delta = computationTime - lastGenerationTime;
     double increment = ((nextCapacity - startCapacity)/t) * delta;
     double actualCapacity = startCapacity + increment;
-    //debug
-//    EV << "startCapacity = " << startCapacity<< "\nnextCapacity = " << nextCapacity<< "\ncomputation time = " << computationTime<<"\ndelta = "<< delta << "\nincrement = " << increment << "\nactualCapacity = " << actualCapacity;
     return actualCapacity;
 }
