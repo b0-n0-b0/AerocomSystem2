@@ -113,6 +113,7 @@ void LinkSelector::sendPacket(){
     if(!queue.empty()){
         AirCraftPacket* packet = queue.front();
         queue.pop();
+        emit(queueLengthSignal, queue.size());
         send(packet,"LS_out", chosenDL);
         EV <<"packet sent \n";
         //try to send another packet
