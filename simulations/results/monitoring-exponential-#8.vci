@@ -1,0 +1,62 @@
+file 841708 1673022338                                          
+version 3
+run monitoring-exponential-8-20230106-17:25:38-1878
+attr configname monitoring-exponential
+attr datetime 20230106-17:25:38
+attr datetimef 20230106-172538
+attr experiment monitoring-exponential
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 1878
+attr repetition 8
+attr replication #8
+attr resultdir results
+attr runnumber 8
+attr seedset 8
+config description "aircraft in monitoring mode, new capacity selected with exponential distrbution"
+config **.X 0.1
+config **.exponentialMean 1
+config **.generationMode 1
+config **.operationMode 0
+config network AerocomSys
+config repeat 10
+config seed-set 8
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 300s
+config warmup-period 10s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 15
+config **.nAC 1
+config **.kMean 0.05+8*0.001
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-2 2
+
+vector 0 AerocomSys.airCraft[0].linkSelector queueLengthStatistic:vector ETV
+attr recordingmode vector
+attr source queueLength
+attr title "queue length statistic"
+vector 1 AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 2 AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 3 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+0	1700 263789 861 30269 10.127648026267 299.978622093615 10040 0 4 6520 8264
+1	265489 216678 861 30268 10.127648026267 299.970958878883 5020 0.0074173161185174 0.01022611930863 39.937531552878 0.31829485929508
+2	482167 143584 861 30268 10.127648026267 299.970958878883 5020 0 0.019518424531 3.2337116298989 0.021586934645221
+3	625751 215956 865 30271 10.135756890623 299.978622093615 5020 0.007417316118989 0.027100262977999 43.171243182776 0.39128839766341
+

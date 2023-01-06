@@ -1,0 +1,62 @@
+file 877585 1673022338                                          
+version 3
+run monitoring-exponential-5-20230106-17:25:37-1862
+attr configname monitoring-exponential
+attr datetime 20230106-17:25:37
+attr datetimef 20230106-172537
+attr experiment monitoring-exponential
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 1862
+attr repetition 5
+attr replication #5
+attr resultdir results
+attr runnumber 5
+attr seedset 5
+config description "aircraft in monitoring mode, new capacity selected with exponential distrbution"
+config **.X 0.1
+config **.exponentialMean 1
+config **.generationMode 1
+config **.operationMode 0
+config network AerocomSys
+config repeat 10
+config seed-set 5
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 300s
+config warmup-period 10s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 15
+config **.nAC 1
+config **.kMean 0.05+5*0.001
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-2 2
+
+vector 0 AerocomSys.airCraft[0].linkSelector queueLengthStatistic:vector ETV
+attr recordingmode vector
+attr source queueLength
+attr title "queue length statistic"
+vector 1 AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 2 AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 3 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+0	1700 275104 1123 31699 10.100733549114 299.929990433977 10468 0 4 6796 8618
+1	276804 225977 1123 31698 10.100733549114 299.922262390847 5234 0.0074083536454054 0.010072963785782 42.115913288837 0.33979980771262
+2	502781 149661 1123 31698 10.100733549114 299.922262390847 5234 0 0.017801296667997 3.4824885462704 0.023307837478971
+3	652442 225142 1126 31701 10.108552171845 299.929990433977 5234 0.0074083536450047 0.025539793541 45.598401835114 0.41939025119901
+

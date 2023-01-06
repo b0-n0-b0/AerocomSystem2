@@ -1,0 +1,62 @@
+file 846660 1673022338                                          
+version 3
+run monitoring-exponential-7-20230106-17:25:38-1873
+attr configname monitoring-exponential
+attr datetime 20230106-17:25:38
+attr datetimef 20230106-172538
+attr experiment monitoring-exponential
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 1873
+attr repetition 7
+attr replication #7
+attr resultdir results
+attr runnumber 7
+attr seedset 7
+config description "aircraft in monitoring mode, new capacity selected with exponential distrbution"
+config **.X 0.1
+config **.exponentialMean 1
+config **.generationMode 1
+config **.operationMode 0
+config network AerocomSys
+config repeat 10
+config seed-set 7
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 300s
+config warmup-period 10s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 15
+config **.nAC 1
+config **.kMean 0.05+7*0.001
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-2 2
+
+vector 0 AerocomSys.airCraft[0].linkSelector queueLengthStatistic:vector ETV
+attr recordingmode vector
+attr source queueLength
+attr title "queue length statistic"
+vector 1 AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 2 AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+vector 3 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+0	1700 265226 1056 30722 10.031441373597 299.942814225302 10090 0 4 6589 8357
+1	266926 217817 1056 30721 10.031441373597 299.934993991831 5045 0.0074105288772156 0.010027942207119 40.510603160628 0.32616147593431
+2	484743 144775 1056 30721 10.031441373597 299.934993991831 5045 0 0.018259789772998 3.2929921034459 0.021662065420792
+3	629518 217141 1059 30724 10.038926543473 299.942814225302 5045 0.0074105288770028 0.02655979250099 43.803595264079 0.40091038160902
+

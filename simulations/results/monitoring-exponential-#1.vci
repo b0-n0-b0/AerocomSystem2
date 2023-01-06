@@ -1,0 +1,62 @@
+file 959471 1673022337                                          
+version 3
+run monitoring-exponential-1-20230106-17:25:37-1830
+attr configname monitoring-exponential
+attr datetime 20230106-17:25:37
+attr datetimef 20230106-172537
+attr experiment monitoring-exponential
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 1830
+attr repetition 1
+attr replication #1
+attr resultdir results
+attr runnumber 1
+attr seedset 1
+config description "aircraft in monitoring mode, new capacity selected with exponential distrbution"
+config **.X 0.1
+config **.exponentialMean 1
+config **.generationMode 1
+config **.operationMode 0
+config network AerocomSys
+config repeat 10
+config seed-set 1
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 300s
+config warmup-period 10s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 15
+config **.nAC 1
+config **.kMean 0.05+1*0.001
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-2 2
+
+vector 0 AerocomSys.airCraft[0].linkSelector queueLengthStatistic:vector ETV
+attr recordingmode vector
+attr source queueLength
+attr title "queue length statistic"
+vector 1 AerocomSys.controlTower responseTimeStatistic:vector ETV
+attr recordingmode vector
+attr source responseTime
+attr title "response time statistic"
+vector 2 AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:vector ETV
+attr recordingmode vector
+attr source serviceTime
+attr title "service time statistic"
+vector 3 AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:vector ETV
+attr recordingmode vector
+attr source waitingTime
+attr title "waiting time statistic"
+0	1700 300426 1201 34121 10.004714065449 299.947509708643 11413 0 4 7638 9930
+1	302126 245697 1203 34123 10.004714065449 299.947509708643 5707 0.0074163524189998 0.029858456734999 50.07768802658 0.46658689537678
+2	547823 246577 1205 34119 10.030913904973 299.939134721275 5706 0.0074163524188434 0.0096372658030157 45.889663392316 0.36996925604521
+3	794400 165070 1205 34119 10.030913904973 299.939134721275 5706 0 0.021067561982999 4.1799964523398 0.028601835018435
+

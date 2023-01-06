@@ -1,0 +1,202 @@
+version 3
+run monitoring-exponential-4-20230106-17:25:37-1856
+attr configname monitoring-exponential
+attr datetime 20230106-17:25:37
+attr datetimef 20230106-172537
+attr experiment monitoring-exponential
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network AerocomSys
+attr processid 1856
+attr repetition 4
+attr replication #4
+attr resultdir results
+attr runnumber 4
+attr seedset 4
+config description "aircraft in monitoring mode, new capacity selected with exponential distrbution"
+config **.X 0.1
+config **.exponentialMean 1
+config **.generationMode 1
+config **.operationMode 0
+config network AerocomSys
+config repeat 10
+config seed-set 4
+config num-rngs 3
+config **.size 100
+config **.minCapacity 6000
+config **.maxCapacity 15000
+config sim-time-limit 300s
+config warmup-period 10s
+config rng-class omnetpp::cMersenneTwister
+config **.nDL 15
+config **.nAC 1
+config **.kMean 0.05+4*0.001
+config **.PacketGenerator.rng-0 0
+config **.LinkSelector.rng-1 1
+config **.DataLink[*].rng-2 2
+
+par AerocomSys.controlTower typename "\"ControlTower\""
+statistic AerocomSys.controlTower responseTimeStatistic:stats
+field count 5426
+field mean 0.0086538808322548
+field stddev 0.0020041129299227
+field min 0.0074257546809982
+field max 0.029244521892991
+field sum 46.955957395815
+field sqrsum 0.42814060201748
+attr recordingmode stats
+attr source responseTime
+attr title "response time statistic"
+par AerocomSys.airCraft[0].packetGenerator typename "\"PacketGenerator\""
+par AerocomSys.airCraft[0].packetGenerator size 100
+par AerocomSys.airCraft[0].packetGenerator kMean 0.054
+par AerocomSys.airCraft[0].linkSelector typename "\"LinkSelector\""
+par AerocomSys.airCraft[0].linkSelector X 0.1
+par AerocomSys.airCraft[0].linkSelector operationMode 0
+statistic AerocomSys.airCraft[0].linkSelector queueLengthStatistic:stats
+field count 10851
+field mean 0.65367247258317
+field stddev 0.63365672370718
+field min 0
+field max 4
+field sum 7093
+field sqrsum 8993
+attr recordingmode stats
+attr source queueLength
+attr title "queue length statistic"
+statistic AerocomSys.airCraft[0].linkSelector waitingTimeStatistic:stats
+field count 5425
+field mean 0.00064765921147413
+field stddev 0.0019553833648491
+field min 0
+field max 0.020265154249984
+field sum 3.5135512222472
+field sqrsum 0.023014378551614
+attr recordingmode stats
+attr source waitingTime
+attr title "waiting time statistic"
+statistic AerocomSys.airCraft[0].linkSelector serviceTimeStatistic:stats
+field count 5425
+field mean 0.0080062612021112
+field stddev 0.00036398491840767
+field min 0.0074257546806768
+field max 0.0096385049180873
+field sum 43.433967021453
+field sqrsum 0.34846228377061
+attr recordingmode stats
+attr source serviceTime
+attr title "service time statistic"
+par AerocomSys.airCraft[0] typename "\"AirCraft\""
+par AerocomSys.airCraft[0] nDL 15
+par AerocomSys.dataLink[0] typename "\"DataLink\""
+par AerocomSys.dataLink[0] minCapacity 6000
+par AerocomSys.dataLink[0] maxCapacity 15000
+par AerocomSys.dataLink[0] generationMode 1
+par AerocomSys.dataLink[0] exponentialMean 1
+par AerocomSys.dataLink[0] lognormalMean 1
+par AerocomSys.dataLink[0] lognormalStdev 1
+par AerocomSys.dataLink[1] typename "\"DataLink\""
+par AerocomSys.dataLink[1] minCapacity 6000
+par AerocomSys.dataLink[1] maxCapacity 15000
+par AerocomSys.dataLink[1] generationMode 1
+par AerocomSys.dataLink[1] exponentialMean 1
+par AerocomSys.dataLink[1] lognormalMean 1
+par AerocomSys.dataLink[1] lognormalStdev 1
+par AerocomSys.dataLink[2] typename "\"DataLink\""
+par AerocomSys.dataLink[2] minCapacity 6000
+par AerocomSys.dataLink[2] maxCapacity 15000
+par AerocomSys.dataLink[2] generationMode 1
+par AerocomSys.dataLink[2] exponentialMean 1
+par AerocomSys.dataLink[2] lognormalMean 1
+par AerocomSys.dataLink[2] lognormalStdev 1
+par AerocomSys.dataLink[3] typename "\"DataLink\""
+par AerocomSys.dataLink[3] minCapacity 6000
+par AerocomSys.dataLink[3] maxCapacity 15000
+par AerocomSys.dataLink[3] generationMode 1
+par AerocomSys.dataLink[3] exponentialMean 1
+par AerocomSys.dataLink[3] lognormalMean 1
+par AerocomSys.dataLink[3] lognormalStdev 1
+par AerocomSys.dataLink[4] typename "\"DataLink\""
+par AerocomSys.dataLink[4] minCapacity 6000
+par AerocomSys.dataLink[4] maxCapacity 15000
+par AerocomSys.dataLink[4] generationMode 1
+par AerocomSys.dataLink[4] exponentialMean 1
+par AerocomSys.dataLink[4] lognormalMean 1
+par AerocomSys.dataLink[4] lognormalStdev 1
+par AerocomSys.dataLink[5] typename "\"DataLink\""
+par AerocomSys.dataLink[5] minCapacity 6000
+par AerocomSys.dataLink[5] maxCapacity 15000
+par AerocomSys.dataLink[5] generationMode 1
+par AerocomSys.dataLink[5] exponentialMean 1
+par AerocomSys.dataLink[5] lognormalMean 1
+par AerocomSys.dataLink[5] lognormalStdev 1
+par AerocomSys.dataLink[6] typename "\"DataLink\""
+par AerocomSys.dataLink[6] minCapacity 6000
+par AerocomSys.dataLink[6] maxCapacity 15000
+par AerocomSys.dataLink[6] generationMode 1
+par AerocomSys.dataLink[6] exponentialMean 1
+par AerocomSys.dataLink[6] lognormalMean 1
+par AerocomSys.dataLink[6] lognormalStdev 1
+par AerocomSys.dataLink[7] typename "\"DataLink\""
+par AerocomSys.dataLink[7] minCapacity 6000
+par AerocomSys.dataLink[7] maxCapacity 15000
+par AerocomSys.dataLink[7] generationMode 1
+par AerocomSys.dataLink[7] exponentialMean 1
+par AerocomSys.dataLink[7] lognormalMean 1
+par AerocomSys.dataLink[7] lognormalStdev 1
+par AerocomSys.dataLink[8] typename "\"DataLink\""
+par AerocomSys.dataLink[8] minCapacity 6000
+par AerocomSys.dataLink[8] maxCapacity 15000
+par AerocomSys.dataLink[8] generationMode 1
+par AerocomSys.dataLink[8] exponentialMean 1
+par AerocomSys.dataLink[8] lognormalMean 1
+par AerocomSys.dataLink[8] lognormalStdev 1
+par AerocomSys.dataLink[9] typename "\"DataLink\""
+par AerocomSys.dataLink[9] minCapacity 6000
+par AerocomSys.dataLink[9] maxCapacity 15000
+par AerocomSys.dataLink[9] generationMode 1
+par AerocomSys.dataLink[9] exponentialMean 1
+par AerocomSys.dataLink[9] lognormalMean 1
+par AerocomSys.dataLink[9] lognormalStdev 1
+par AerocomSys.dataLink[10] typename "\"DataLink\""
+par AerocomSys.dataLink[10] minCapacity 6000
+par AerocomSys.dataLink[10] maxCapacity 15000
+par AerocomSys.dataLink[10] generationMode 1
+par AerocomSys.dataLink[10] exponentialMean 1
+par AerocomSys.dataLink[10] lognormalMean 1
+par AerocomSys.dataLink[10] lognormalStdev 1
+par AerocomSys.dataLink[11] typename "\"DataLink\""
+par AerocomSys.dataLink[11] minCapacity 6000
+par AerocomSys.dataLink[11] maxCapacity 15000
+par AerocomSys.dataLink[11] generationMode 1
+par AerocomSys.dataLink[11] exponentialMean 1
+par AerocomSys.dataLink[11] lognormalMean 1
+par AerocomSys.dataLink[11] lognormalStdev 1
+par AerocomSys.dataLink[12] typename "\"DataLink\""
+par AerocomSys.dataLink[12] minCapacity 6000
+par AerocomSys.dataLink[12] maxCapacity 15000
+par AerocomSys.dataLink[12] generationMode 1
+par AerocomSys.dataLink[12] exponentialMean 1
+par AerocomSys.dataLink[12] lognormalMean 1
+par AerocomSys.dataLink[12] lognormalStdev 1
+par AerocomSys.dataLink[13] typename "\"DataLink\""
+par AerocomSys.dataLink[13] minCapacity 6000
+par AerocomSys.dataLink[13] maxCapacity 15000
+par AerocomSys.dataLink[13] generationMode 1
+par AerocomSys.dataLink[13] exponentialMean 1
+par AerocomSys.dataLink[13] lognormalMean 1
+par AerocomSys.dataLink[13] lognormalStdev 1
+par AerocomSys.dataLink[14] typename "\"DataLink\""
+par AerocomSys.dataLink[14] minCapacity 6000
+par AerocomSys.dataLink[14] maxCapacity 15000
+par AerocomSys.dataLink[14] generationMode 1
+par AerocomSys.dataLink[14] exponentialMean 1
+par AerocomSys.dataLink[14] lognormalMean 1
+par AerocomSys.dataLink[14] lognormalStdev 1
+par AerocomSys typename "\"AerocomSys\""
+par AerocomSys nDL 15
+par AerocomSys nAC 1
+
