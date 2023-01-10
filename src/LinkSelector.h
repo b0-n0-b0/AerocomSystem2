@@ -10,13 +10,10 @@ using namespace omnetpp;
 class LinkSelector : public cSimpleModule
 {
   protected:
-//    virtual void initialize() override;
     virtual void initialize(int stage) override;
     virtual void finish() override;
     virtual int numInitStages() const override  { return 2; };
     virtual void handleMessage(cMessage *msg) override;
-//    cMessage* malusExpire;
-//    cMessage* monitoringExpire;
     cMessage* serviceTimeExpire;
 
   private:
@@ -26,10 +23,7 @@ class LinkSelector : public cSimpleModule
     int nDL;
     int operationMode;
     double X;
-//    double m;
-//    bool isScanning = true;
     bool serving = false;
-//    double nextMonitoringTime;
     //signals
     simsignal_t serviceTimeSignal = registerSignal("serviceTime");
     simsignal_t waitingTimeSignal = registerSignal("waitingTime");
@@ -39,8 +33,6 @@ class LinkSelector : public cSimpleModule
     double getIndexCapacity(int i);
     void sendPacket();
     void handlePcktArrival(AirCraftPacket* msg);
-//    void handleMalus();
-//    void monitorDl();
     void serviceTimePckt();
 };
 
