@@ -52,11 +52,6 @@ void DataLink::generate_t(){
 }
 
 double DataLink::getActualCapacity(){
-    //this function will be called by the LinkSelector to retrieve the capacity at the time of the call
-    //random debug values
-//    t = 20.5;
-//    startCapacity = 2000;
-//    nextCapacity = 1000;
     double computationTime = simTime().dbl();
     double delta = computationTime - lastGenerationTime;
     double increment = ((nextCapacity - startCapacity)/t) * delta;
